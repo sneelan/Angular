@@ -1,0 +1,264 @@
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">ngx-toaxtr. New toastr With Shared Service file - *pending Not Finished</h4>
+  *app-toastr
+  <app-toastrservice></app-toastrservice>
+</div>
+<br>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">toastr = ngx-toaxtr. </h4>
+  *app-toastr
+  <app-toastr></app-toastr>
+</div>
+<br>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Reusable Table Components</h4>
+  <p>passing array to --- < app-table [TableData]="Employees">  app-table</p>
+  *app-reuse
+  <app-reuse></app-reuse>
+</div>
+<br>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Navigation Pages</h4>  
+</div>
+*app-layout
+<app-layout></app-layout>
+<br>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Adding Number Game - setInterval</h4>
+  <button class="btn btn-success me-2" (click)="Startgame()">Start Game</button>
+  <button class="btn btn-danger" (click)="Stopgame()">Stop Game</button>
+  <div class="border p-2"> <span *ngFor="let no of MyNum" class="text-white me-1 bg-success p-1 me-1">{{no}}</span></div>
+<textarea class="w-100 mt-2">
+interval:any;
+Initialnumber:number=1;
+Startgame(){   
+  this.interval = setInterval(() => {      
+  this.Initialnumber+=2;
+  this.MyNum.push(this.Initialnumber)
+}, 100);
+}
+Stopgame(){clearInterval(this.interval);}
+  </textarea>
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Add ngFor loop to component and Pass Data @Input()</h4>
+  <div class="bg-dark text-white">{{receivedtitle}} - {{receivedcategory}}</div>
+  *app-news
+  <div class="row">
+    <app-news class="col-4 " 
+    *ngFor="let post of MyNews" 
+    [Aliaschildpost]="post"
+    (SendtoParent)="ReceivefromChild($event)"
+    ></app-news>
+  </div>
+<textarea class="w-100 mt-2">
+1. <app-news class="col-4" *ngFor="let post of MyNews" [childpost]="post"
+2. @Input() childpost:{title:string, category:string, postid:number}
+3. <h6>childpost.title</h6>
+4. [ngClass]=" for different colors
+5. Add Alias to input decorator @Input('Aliaschildpost')
+</textarea>
+ </div>
+
+
+
+
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Add Remove From Array</h4>
+  <button (click)="onAddServer()">Add Server</button>
+  <ul>
+    <li *ngFor="let server of servers; let i=index">
+      {{i}} - {{server.name}}  <button (click)="onRemoveServer(i)">Remove this</button>
+  </li></ul>
+  <textarea class="w-100 mt-2">Declare Array
+    servers=[{name:''}];
+    //servers=[{name:'a'}, {name:'b'},{name:'c'}];
+    //const servers: Array<{name:string}> = [...];
+    //servers: server[] = [];
+    Employees:any[]= [{}] //working //@Input() Employees:any[];
+  </textarea>
+</div>
+
+*app-service - Custom service
+<app-service></app-service>
+
+
+*app-mycustom - Custom directive
+<app-directive></app-directive>
+
+*app-model
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">*.model.ts - --- Define Array, types in it</h4>
+  using objects which hold your data may be pretty useful. It makes the developer live significantly easier
+  <app-model></app-model>
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Bootstrap Popper - popper.js enable/disable</h4>
+  <app-bootstrap></app-bootstrap>  
+</div>
+
+
+*app-contentchild
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">@ContentChild Decorator</h4>
+  <div class="row">
+    <div class="col-6">      
+      <app-contentchild>
+        <div class="border border-success p-2 bg-light">
+          <p #paraOFngcontent>***This content from child component-Content Projection - ng-content XYZ</p></div>
+      </app-contentchild>
+      <textarea class="w-100 mt-2">
+<app-contentchild>
+<p #paraOFngcontent>***This content from child Projection</p>
+</app-contentchild>
+==============
+<ng-content></ng-content>
+=============
+export class ContentchildComponent implements OnInit, AfterContentInit
+@ContentChild ('paraOFngcontent') myparaOFngcontent: ElementRef;          
+constructor
+ngOnInit // not initialized
+ngAfterContentInit //here it can get data
+this.myparaOFngcontent.nativeElement.textContent
+
+      </textarea>
+
+    </div>
+    <div class="col-6">
+      <div class="bg-dark text-white p-0">
+        <div class="bg-primary text-white p-1 mb-1">Console.log</div>
+        <small >
+          <div  class="px-2 small">
+            First -->> ngOnInit called ******* paragraph-undefined. <br>
+            Then -->> ngAfterContentInit called ******* paragraph-gets exact data from contentchildmethod.            
+        </div></small></div>
+    </div>
+  </div>  
+
+</div>
+
+
+
+*app-viewchild
+<div class="bg-primary p-2 text-white"> OUtside: Template reference or Local Reference : <button>{{Getmydata.age2}}</button> #Getmydata.age2</div> 
+<app-viewchild #Getmydata></app-viewchild>
+
+<app-lifecyclehook></app-lifecyclehook>
+
+*app-ngcontent
+<app-ngcontent></app-ngcontent>
+
+*app-viewencaps
+<app-viewencaps></app-viewencaps>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">#Refernce div #mydiv - is Local Reference </h4>
+</div>
+
+
+
+
+
+*app-customers
+<app-customers #customer></app-customers>
+<div class="bg-white p-2 mb-2 rounded shadow">Outside Component : 
+  <span *ngIf="customer.SelectedCustomer!=''" class="bg-danger text-white p-2">{{customer.SelectedCustomer}}</span>
+  Easy! Passing Values to Parent Element by Template Reference #customer
+</div>
+*app-products
+<app-products></app-products>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Template reference variable - #myVariable, myVariable.value</h4>
+  <input type="text" #myVariable (keyup)="0" value="Sample">
+  <button class="btn btn-primary" (click)="myAlert(myVariable)">Alert</button>
+  <span class="ms-3 bg-success text-white p-2" *ngIf="myVariable.value !=''">{{myVariable.value}}</span>
+  <textarea class="w-100 mt-2">
+    <input type="text" #myVariable (keyup)="0" value="Sample">
+    <button class="btn btn-primary" (click)="myAlert(myVariable)">Alert</button>
+    myAlert(myData: HTMLInputElement){
+      alert('you typed here is '+myData.value);
+      }
+  </textarea>
+</div>
+*app-parent
+<app-parent></app-parent>
+
+<div class="bg-white shadow{{mycustomclass}} rounded mb-2 p-3 alert alert-danger text-dark">
+  <h4 class="fs-3">data binding- adding class name once clicked with css animation</h4>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla eligendi ex officia corporis, voluptates, delectus provident id vel debitis optio vero quasi, aliquid sint. Dolores eius fugiat minus possimus tenetur.
+  <button class="btn btn-danger" (click)="AddClass()">X</button>
+  <textarea class="w-100">
+    div class="shadow{{mycustomclass}}
+    <button class="btn btn-danger" (click)="AddClass()">X</button>
+    AddClass(){this.mycustomclass=' d-none';}
+    *ngIf="SearchText=='' || product.title.toLowerCase().includes(SearchText)    "
+  </textarea>
+  <style>.fade-out{opacity:0; transition: 2s;}</style>
+</div>
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Radio Button - Normal Html</h4>
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    
+    <span *ngFor="let season1 of seasons1">    
+      <input type="radio" id="{{season1}}" name="myradio" value="{{season1}}" [(ngModel)]="favoriteSeason1">
+      <label class="ps-1 pe-4" for="{{season1}}">{{season1}}</label><br>
+    </span>{{favoriteSeason1}}
+    
+
+  
+  </div>
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3">
+  <h4 class="fs-3">Event binding Method :</h4>
+  <div class="fs-5 mb-2">    
+    Two way Binding : <input type="text" placeholder="keyword" (input)="changeValue($event)" [(ngModel)]="Getvalue" />
+    You Searched "<span class="text-primary fw-bold">{{SearchValue}}</span>" appears here
+    <textarea class="w-100 fs-6 small mt-2">
+            SearchValue:string='';
+            changeValue(mydata: Event){
+            //console.log((<HTMLInputElement>mydata.target).value);
+            this.SearchValue=(<HTMLInputElement>mydata.target).value;
+            }
+            <input type="text" placeholder="name" (input)="changeValue($event)" />
+      </textarea>
+      One way Binding : <input type="text" [(ngModel)]="Getvalue">
+  </div>
+</div>
+<div class="bg-white shadow rounded mb-2 p-3">
+  <h4 class="fs-3">Basics</h4>
+  <div class="fs-5 mb-2">   
+    <button class="btn btn-success border-0 p-2" (click)="myfunction()">Hide/Show content</button>
+    <span class="ps-2" [hidden]="display">Display this content</span>
+  </div>
+  <div class="fs-5 mb-2">
+    <br>
+    property binding img [src]="imgurl" <img [src]="imgurl" width="60"><br>
+    This is Maths: <span class="text-primary fw-bold">{{5*25}}</span><br>
+    Bootstrap icon will appear here? <i class="bi bi-android2"></i> <br>
+    This Data binding: Data appears from .ts file <span class="text-primary fw-bold">{{NewTitle}}</span>
+  </div>
+  <div class="border p-2">
+    SetTimeout function <div class=" d-inline-block bg-info text-black" *ngIf="Hidemediv">This will be hidden </div>
+    <button (click)="mytimeoutfunction()">Hide it after 3 Seconds</button>
+    <textarea class="w-100 p-1">mytimeoutfunction(){ setTimeout(() => { this.Hidemediv=false; }, 3000);</textarea>
+  </div>
+</div>
+
+*app-angular
+<div class="bg-white p-3 my-3">
+  <app-angular></app-angular>
+</div> 
+<app-basicsyntax></app-basicsyntax>

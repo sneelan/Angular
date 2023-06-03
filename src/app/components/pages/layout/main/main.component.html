@@ -1,0 +1,40 @@
+<div class="bg-danger text-white p-3 m-3" *ngIf="navdata=='home' || navdata==''">
+  <h1>Homepage - Welcome to my Website</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nam reiciendis totam animi dolor, fugiat officiis, sed iure incidunt laudantium sequi qui optio facilis aut, corporis velit quaerat dignissimos ab.</p>  
+
+</div>
+
+<div class="bg-success text-white p-3 m-3" *ngIf="navdata=='aboutus'">
+  <h1>About Us</h1>
+  <p>Adipisicing elit. Praesentium nam reiciendis totam animi dolor, fugiat officiis, sed iure incidunt laudantium sequi qui optio facilis aut, corporis velit quaerat dignissimos ab.</p>  
+</div>
+
+<div class="bg-warning text-dark p-3 m-3" *ngIf="navdata=='services'">
+  <h1>Services</h1>
+  <p>Sit amet consectetur adipisicing elit. Praesentium nam reiciendis totam animi dolor, fugiat officiis, sed iure incidunt laudantium sequi qui optio facilis aut, corporis velit quaerat dignissimos ab.</p>  
+</div>
+<div class="row p-4">
+  <div class="col-6">
+    <table class="table table-hover table-striped align-middle"><tbody>
+      <tr *ngFor="let item of MyProducts, let i=index">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>        
+       
+        <td>{{item.code}}</td>
+        <td>
+          <span class="d-inline-block p-2" [ngClass]="{
+            '':item.id==SelectedProduct,
+            'invisible':item.id!=SelectedProduct
+          }">
+            <i class="fs-4 m-0 p-0 fw-bold lh-1 bi bi-check-square-fill text-success"></i>
+          </span>
+          <button class="btn btn-warning me-2" (click)="SelectedProduct=item.id;Cartcount=Cartcount+1" [disabled]="SelectedProduct==item.id">            
+            Add to Cart</button>
+          <button class="btn btn-success" >Buy</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col-6">Cart({{Cartcount}})</div>
+</div>

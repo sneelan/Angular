@@ -1,0 +1,23 @@
+<h3 class="text-primary">My Name is {{myname}}</h3>
+<div class="bg-info p-2">
+  const CallAlertService = new AlertService(); <br>
+  CallAlertService.OnAlertClicked(this.myname);</div>
+<button (click)="AlertmyName()">Alert Myname-child function</button>
+<button (click)="NewAlertmyName()">Alert Myname-service.ts</button>
+<textarea class="w-100 p-2">
+  alert.service.ts file
+  export class AlertService {
+    OnAlertClicked(myname:string){
+      alert('From Service file ' + myname);
+    }
+  }
+  --------
+  Inside other component
+  import { AlertService } from 'alert.service';
+  NewAlertmyName(){
+    const CallAlertService = new AlertService();
+    CallAlertService.OnAlertClicked(this.myname);
+  }
+  --------
+  <button (click)="NewAlertmyName()">XXX</button>
+    </textarea>

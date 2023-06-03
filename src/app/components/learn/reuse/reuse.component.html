@@ -1,0 +1,11 @@
+<h5 class="fs-3">without customized header</h5>
+<p> <a target="_blank" href="https://www.youtube.com/watch?v=TZZApWysF9g">Watch Video - By using ngTemplateOutlet=</a></p>
+<app-button [BtnData]="[{ text: 'Buy', theme: 'dark', function: 'ClickFunction' }]"></app-button>
+
+<app-table [TableData]="[{memberid: '858', data: 'Sample1', user: 'neelan'}, {memberid: '112', data: 'Sample2', user: 'Mahesh'}]"></app-table>
+<h5 class="fs-3">with customized header & Index</h5>
+<app-table [ShowIndex]="true" [TableData]="[{memberid: '858', data: 'Sample1', user: 'neelan'}, {memberid: '112', data: 'Sample2', user: 'Mahesh'}]" [BtnData]="[{text:'Buy', theme:'dark', pass:'user'}]"></app-table>
+
+<h5 class="fs-3">with customized header</h5>
+<app-table [TableData]="[{name: 'neelan', age: '40', location: 'Aral'}, {name: 'Rajesh', age: '34', location: 'Kottayam'}]" [TableHeader]="[{location:'HomeTown'}]" [BtnData]="[{text:'Add to Cart', theme:'primary', function:'ClickFunction'}]"></app-table>
+<app-table [TableData]="Employees" [TableHeader]="[{name: 'New-name**', id: '*Newid'}]" [BtnData]="[{text:'Send', theme:'default', pass:'user'}]"></app-table>

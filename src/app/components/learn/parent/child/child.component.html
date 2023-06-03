@@ -1,0 +1,24 @@
+
+<div class="border my-2">
+<div class="bg-dark text-white fw-bold p-2">Printing Value from Parent - Searching <span class="bg-warning text-dark p-2">{{PassValue}}</span></div>
+<ul class="m-0">
+  <ng-container *ngFor="let blog of blogs">
+<li *ngIf="PassValue=='' || blog.title.toLowerCase().includes(PassValue)">{{blog.title}}</li>
+  </ng-container>  
+</ul>
+</div>
+
+Change Parent Color Theme: 
+<a class="btn btn-warning p-2 text-deocation-none me-2" (click)="ThemeChange('bg-warning')">Yellow</a>
+<a class="btn btn-info p-2 text-deocation-none me-2" (click)="ThemeChange('bg-info')">Cyan</a>
+<a class="btn btn-danger p-2 text-deocation-none me-2" (click)="ThemeChange('bg-danger text-white')">Red</a>
+{{Sendvalue}}
+
+
+<textarea class="w-100 mt-2">
+  Parent Html-><app-child [PassValue]="Newvalue"></app-child>
+  only declare Newvalue as string and pass by ngmodel.
+  dont declare PassValue in parent.
+  child.ts->import { Component,Input } from '@angular/core';
+  child.ts->@Input() PassValue=''; then place {PassValue}
+</textarea>

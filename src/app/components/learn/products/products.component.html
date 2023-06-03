@@ -1,0 +1,50 @@
+<div class="bg-dark text-white p-2 rounded-top">Component - Products - learn/products</div>
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Search, Filter, For</h4>
+  *ngFor="let item of [1,3,5] - Simple Array : <span *ngFor="let item of [1,3,5]" class="me-1 bg-warning p-2 fw-bold text-dark d-inline-block">{{item}}</span>
+  <div class="row mt-2">
+    <div class="text-center mb-2 alert alert-warning">
+      <input type="text" placeholder="Title Search" [(ngModel)]="SearchText">
+      <span class="fw-bold "> Filters : </span>
+      <input type="radio" id="all" name="myradio1" value="all" [(ngModel)]="SelectedCategory">
+    <label class="ps-1 pe-4" for="all">All ({{getTotalposts() }})</label>
+    <input type="radio" id="drawing" name="drawing" value="drawing" [(ngModel)]="SelectedCategory">
+    <label class="ps-1 pe-4" for="drawing">Drawing ({{getTotalposts_drawing()}})</label>
+      <input type="radio" id="3d" name="myradio1" value="3d" [(ngModel)]="SelectedCategory">
+      <label class="ps-1 pe-4" for="3d">3d ({{getTotalposts_3d()}})</label>
+      <small class="bg-danger text-white p-2">{{SelectedCategory}} {{SearchText}}</small>
+    </div>
+
+  <div class="row m-0">  
+  <div class="col-4 mb-2" *ngFor="let product of products; let i=index"
+  [ngClass]="{        
+    'd-none': SelectedCategory!='all' && SelectedCategory != product.category
+  }"
+  >
+  <div class="card" *ngIf="SearchText=='' || product.title.toLowerCase().includes(SearchText) ">
+    <img src="{{product.img}}" class="card-img-top" >
+    <div class="card-body" >
+      <h5 class="card-title">{{product.title}}</h5>
+      <div class="text-centerx">
+        index : {{i}}
+        <button class="btn d-inline-block text-white p-2"
+        [ngClass]="{        
+          'bg-danger': product.category == 'drawing',
+          'bg-primary ': product.category == '3d'
+          
+        }"  
+        >{{product.category}}</button> Same color by ngClass
+      </div>      
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<textarea class="w-100 mt-2">
+  <span *ngFor="let itemm of [1,3,5]" class="me-1 bg-warning p-2 fw-bold text-dark d-inline-block">expression-itemm</span>
+  *ngFor="let product of products; let i=index"
+  *ngIf="SelectedCategory =='all' || SelectedCategory == product.category"
+  Filter: All ({{getTotalposts() }})
+  getTotalposts(){ return this.products.length;}
+</textarea>
+</div>

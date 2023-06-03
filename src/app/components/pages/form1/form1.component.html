@@ -1,0 +1,21 @@
+<div class="form-container">
+  <h2>Sample Form</h2>
+  <form [formGroup]="sampleForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" formControlName="name">
+      <div *ngIf="sampleForm.get('name')?.invalid && (sampleForm.get('name')?.dirty || sampleForm.get('name')?.touched)">
+        <div *ngIf="sampleForm.get('name')?.errors?.['required']">Name is required.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email">
+      <div *ngIf="sampleForm.get('email')?.invalid && (sampleForm.get('email')?.dirty || sampleForm.get('email')?.touched)">
+        <div *ngIf="sampleForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="sampleForm.get('email')?.errors?.['email']">Invalid email format.</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="sampleForm.invalid">Submit</button>
+  </form>
+</div>

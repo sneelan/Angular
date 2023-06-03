@@ -1,0 +1,98 @@
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3"> Local Reference - Getting Data from Input elements</h4>
+  <h4 class="fs-3"> Method: 1</h4>  
+
+  <b>Input Reference - HtmlInputElement</b><br>
+  <input  type="text" value="Data Value MMSX - Also Date is working" #InputReference>
+  <button (click)="ExtractInputvalue(InputReference)">Show - #InputReference</button>
+  <div class="bg-info p-2" *ngIf="Myinputreferencedata">{{Myinputreferencedata}}</div>
+  <br>(click)="ExtractInputvalue(InputReference)" <br>
+  Myinputreferencedata:string='';<br>
+  ExtractInputvalue(InputReference:HTMLInputElement) function<br>
+    this.Myinputreferencedata=InputReference.value;
+    
+  
+    <hr>
+    <h4 class="fs-3"> Method: 2 - Both are same</h4>
+    <h4 class="fs-3"> Using View Child Decorator - @ViewChild('dobInput') dateOfBirth: ElementRef;</h4>
+  <div >Template reference variable - #myVariable, myVariable.value</div>
+  <label class="pe-1 mb-4">DOB: </label> <input type="date" #dobInput (blur)="calculateAge()" [(ngModel)]="myDOB"> 
+  <label class="ps-4 pe-1"> Age : </label> <input type="text" #ageInput ><br>
+
+  <label class="pe-1">DOB1: </label> <input type="number"  #dobInput1 (input)="calculateAge1()" [(ngModel)]="myDOB1"> 
+  <label class="ps-4 pe-1"> Age1 : </label> <input type="text" #ageInput1 [(ngModel)]="age2">
+  <br>
+  @ViewChild('dobInput') dateOfBirth: ElementRef;<br>
+  @ViewChild('ageInput') age: ElementRef;  <br>
+  calculateAge() <br>
+  let birthYear=new Date(this.dateOfBirth.nativeElement.value).getFullYear();<br>
+  let currentYear = new Date().getFullYear();<br>
+  let age=currentYear-birthYear;<br>
+  this.age.nativeElement.value=age;<br>
+  let finalAge=age;<br>
+  <span class="text-danger">For Other Div #refernece - nativeElement.textContent **ngAfterViewInit</span>
+  <hr>
+  [(ngModel)]
+  <input [(ngModel)]="mydate" type="date"><span class="text-danger"></span> --------printing here {{mydate}}
+  
+
+
+  <hr>
+  <label> using [(ngModel)] </label> <br><input [(ngModel)]="myname" type="text"> printing here {{myname}}
+  <br>[(ngModel)]
+
+
+  <hr>
+  <label> Inline Functions + [(ngModel)]</label> <br><input [(ngModel)]="myname1" type="text">
+  <button (click)="myname1result=myname1+' extara values'">Add Some variable</button>
+   printing here {{myname1result}}
+   <br>
+   (click)="myname1result=myname1+' extara values'"
+  <hr>
+  <label> Inline function Calculations [(ngModel)]</label> <br>
+  <input [(ngModel)]="mynumber1" type="number">
+  <input [(ngModel)]="mynumber2" type="number">
+  <button (click)="mynumber1result=mynumber1+mynumber2">Add Some variable</button>
+  <input [(ngModel)]="mynumber1result" type="number"> 
+  <br>
+  (click)="mynumber1result=mynumber1+mynumber2"
+  <hr>
+  <label> Inside TS function Substraction [(ngModel)]</label> <br>
+  <input [(ngModel)]="year1" type="number">
+  <input [(ngModel)]="year2" type="number">
+  <button (click)="SubstractYear()">Add Some variable</button>
+  <input [(ngModel)]="totalyear" type="number"> 
+  <br>SubstractYear() this.totalyear=this.year1-this.year2; 
+  <hr>
+
+  <b>Data Binding to Div - [innerHTML]="mypara"</b>
+  <br>
+  <p class="border bg-light p-2 m-0 mb-1" [innerHTML]="mypara">my old paragraph</p>
+  <button (click)="getPara()">Add Some variable</button>  
+   used [innerHTML]="mypara",  (click)="getPara() mypara="aletered....">
+   <hr>
+   <b>@ViewChild</b> <br>
+   <dir class="row p-0 m-0">
+      <p class="col-4 border bg-light p-2 m-0 mb-1" #mypara1>THIS IS MY PARAGRAPH. CODE abc12XYZ</p>
+      <p class="col-4 border bg-light p-2 m-0 mb-1 text-center"><button class="btn btn-success text-center" (click)="getPara1()">Convert to Lowercase</button></p>
+      <p class="col-4 border bg-success text-white p-2 m-0 mb-1">{{printmypara}}</p>
+   </dir>
+   <textarea class="w-100 p-2">
+    <p  #mypara1>
+    (click)="getPara() mypara="aletered....">
+    @ViewChild('mypara1') mypara1a: ElementRef;
+    printmypara:string='initial';
+   function -> this.printmypara=this.mypara1a.nativeElement.innerText.toLowerCase();
+  </textarea>
+    <hr>
+   <hr>
+</div>
+
+<!--
+accessing through view child decorator is not working  
+DemoValue.sayHello() ----Not working i tried many times 
+to print sayhello value from a demo component child
+but template rereference will work
+
+-->
+ 

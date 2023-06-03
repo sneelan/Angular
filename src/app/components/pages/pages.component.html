@@ -1,0 +1,22 @@
+<div class="container-xl bg-white p-2">
+  <ul class="nav nav-tabs">    
+        <li class="nav-item"><a (click)="showpage='learn2'" [ngClass]="{'active bg-primary text-white':showpage=='learn2'}" class="nav-link">Leanr 2</a></li>
+    <li class="nav-item"><a (click)="showpage='learn1'" [ngClass]="{'active bg-primary text-white':showpage=='learn1'}" class="nav-link">Leanr 1</a></li>    
+    <li class="nav-item"><a (click)="showpage='learnapi'" [ngClass]="{'active bg-primary text-white':showpage=='learnapi'}" class="nav-link">Leanr Api</a></li>    
+    <li class="nav-item"><a (click)="showpage='login'" [ngClass]="{'active bg-primary text-white':showpage=='login'}" class="nav-link">Forms</a></li>
+    <li class="nav-item"><a (click)="showpage='animation'" [ngClass]="{'active bg-primary text-white':showpage=='animation'}" class="nav-link">Animation 1</a></li>
+    <li class="nav-item"><a (click)="showpage='animationtwo'" [ngClass]="{'active bg-primary text-white':showpage=='animationtwo'}" class="nav-link">Animation 2</a></li>
+    <li class="nav-item"><a (click)="showpage='kennedy'" [ngClass]="{'active bg-primary text-white':showpage=='kennedy'}" class="nav-link">kennedy</a></li>
+    <li class="nav-item"><a (click)="showpage='router'" [ngClass]="{'active bg-primary text-white':showpage=='router'}" class="nav-link">Router</a></li>
+  </ul>
+</div>
+
+<app-learn2 *ngIf="showpage=='learn2'"></app-learn2>
+<app-learn *ngIf="showpage=='learn1'"></app-learn>
+<app-learnapi *ngIf="showpage=='learnapi'"></app-learnapi>
+<app-animations *ngIf="showpage=='animation'"></app-animations>  
+
+<div *ngIf="showpage=='animationtwo'"><app-kotlin>ddd</app-kotlin></div>
+<ng-container *ngIf="showpage=='login'"><app-login></app-login></ng-container>
+<app-kennedy *ngIf="showpage=='kennedy'"></app-kennedy>
+<app-router *ngIf="showpage=='router'"></app-router>

@@ -1,0 +1,122 @@
+<div class="bg-white p-2">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form-field">
+      <input type="text" formControlName="name" placeholder="Name">
+      <div *ngIf="isFieldValid('name')" class="error-message">
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <input type="email" formControlName="email" placeholder="Email">
+      <div *ngIf="isFieldValid('email')" class="error-message">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input type="password" formControlName="password" placeholder="password">
+      <div *ngIf="isFieldValid('password')" class="error-message">
+        {{ getErrorMessage('password') }}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="dropdown">Dropdown</label>
+      <select formControlName="dropdown" id="dropdown">
+        <option value="">Select an option</option>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+      <div *ngIf="isFieldValid('dropdown')" class="error-message">
+        {{ getErrorMessage('dropdown') }}
+      </div>
+    </div>
+
+
+    <div class="form-field">
+      <label>Gender</label>
+      <div>
+        <input type="radio" formControlName="gender" value="male" id="male">
+        <label for="male"> Male</label>
+      </div>
+      <div>
+        <input type="radio" formControlName="gender" value="female" id="female">
+        <label for="female"> Female</label>
+      </div>
+      <div *ngIf="isFieldValid('gender')" class="error-message">
+        {{ getErrorMessage('gender') }}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="image">Upload Image</label>
+      <input type="file" formControlName="image" id="image">
+      <div *ngIf="isFieldValid('image')" class="error-message">
+        {{ getErrorMessage('image') }}
+      </div>
+    </div>
+    <div class="form-field">
+      <label for="textarea">Textarea</label>
+      <textarea formControlName="textarea" id="textarea"></textarea>
+      <div *ngIf="isFieldValid('textarea')" class="error-message">
+        {{ getErrorMessage('textarea') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="checkbox">Checkbox</label>
+      <input type="checkbox" formControlName="checkbox" id="checkbox">
+      <div *ngIf="isFieldValid('checkbox')" class="error-message">
+        {{ getErrorMessage('checkbox') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="radio">Radio Buttons</label>
+      <div>
+        <input type="radio" formControlName="radio" value="option1" id="radio-option1">
+        <label for="radio-option1">Option 1</label>
+      </div>
+      <div>
+        <input type="radio" formControlName="radio" value="option2" id="radio-option2">
+        <label for="radio-option2">Option 2</label>
+      </div>
+      <div *ngIf="isFieldValid('radio')" class="error-message">
+        {{ getErrorMessage('radio') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="date">Date Picker</label>
+      <input type="date" formControlName="date" id="date">
+      <div *ngIf="isFieldValid('date')" class="error-message">
+        {{ getErrorMessage('date') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="time">Time Picker</label>
+      <input type="time" formControlName="time" id="time">
+      <div *ngIf="isFieldValid('time')" class="error-message">
+        {{ getErrorMessage('time') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="range">Range Slider</label>
+      <input type="range" formControlName="range" id="range">
+      <div *ngIf="isFieldValid('range')" class="error-message">
+        {{ getErrorMessage('range') }}
+      </div>
+    </div>
+
+
+
+
+
+
+    <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

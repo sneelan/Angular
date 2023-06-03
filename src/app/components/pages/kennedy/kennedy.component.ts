@@ -1,0 +1,139 @@
+import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-kennedy',
+  templateUrl: './kennedy.component.html',
+  styleUrls: ['./kennedy.component.scss']
+})
+
+export class KennedyComponent {
+
+  Xusers=[
+    {name:'neelan'},
+    {name:'Akhil'},
+    {name:'Dhanesh'}
+  ]
+  XAddNewUser(name:string){
+    this.Xusers.push({name:name});
+  }
+
+
+
+
+    //myMydata=this.peopleList.map()
+
+
+    
+
+
+   
+    //employeeIds = this.peopleList.map(employee => employee.name); 
+    //employeeIds = this.peopleList.map(employee => employee.name); 
+    // let array_name: Array<elementType> = [val1,val2,valn..]
+    //NewemployeeIds: Array<string>;
+//employeeIds = this.peopleList.flatMap(employee => employee.name);
+
+//array1 = [1, 3, 47, 1, 7];
+//array2 = [3, 6];
+//filteredArray1 = this.array1.filter(el => this.array2.includes(el));
+//
+
+//id_filter:[{name:string,country:string}];
+//filteredArray1=this.peopleList.filter(person => person.country==="Asutralia");
+
+/* zmydata:string='';
+filtered = this.peopleList.filter(function(item) {
+  if(item.country==='Asutralia'){ zmydata= item.name, item.country;}
+}); */
+
+
+  //===========================
+  sendnavdata:string='';
+  GetNavData(data:string){
+    this.sendnavdata=data;    
+    }
+
+
+    ApeopleList = [{name: 'Tom',country: 'India'},{name: 'John',country: 'UK'},{name: 'Jack',country: 'USA'},{name: 'Dan',country: 'UK'},{name: 'Helen',country: 'Australia'}];  
+
+    peopleList = [{name: 'Tom',country: 'India'},{name: 'John',country: 'UK'},{name: 'Jack',country: 'USA'},{name: 'Dan',country: 'UK'},{name: 'Helen',country: 'Australia'}];  
+
+    Mydata = new Map();
+    AustraliaPeople = this.peopleList.filter(mydata => {
+           if(mydata.country == 'Australia') {
+               this.Mydata.delete(mydata.name);
+               this.Mydata.set(mydata.name, mydata.country='');
+               return true;
+           } else {return false;}
+
+       this.Mydata.set(mydata.name, mydata.country);     
+       return true;
+   }); 
+
+   result: { [key: string]: string[] } = {};
+  constructor(){}  
+  ngOnInit() {  
+
+    
+//console.log(this.AustraliaPeople);
+
+//====================
+ const AustraliaList=[]; 
+    for (var value of this.ApeopleList ) {
+      if(value.country==='Australia'){
+        AustraliaList.push(value.name);        
+      }
+    }
+    //console.log(AustraliaList); // ['Helen']
+
+
+
+    var AustraliaNames = this.ApeopleList
+    .filter(function(item) {  
+        return item.country === 'Australia';  
+    })
+    .map(function(item) {   
+        return item.name;  
+    });
+    console.log(AustraliaNames);
+
+
+
+
+
+      //result: { [key: string]: string[] } = {};
+      this.ApeopleList.forEach(item => {
+        if (this.result[item.country]) {
+          this.result[item.country].push(item.name);
+        } else {
+          this.result[item.country] = [item.name];
+        }
+      });      
+      console.log(this.result); 
+    
+const fruits: string[] = ['apple', 'orange', 'banana', 'grape'];
+// Sorting the array in alphabetical order
+fruits.sort((a, b) => a.localeCompare(b));
+// Output the sorted array
+console.log(fruits);
+
+
+
+      
+
+      var countryList = this.ApeopleList.map(function(item) {return item.country;})
+        
+      console.log(countryList);  
+      
+
+
+
+
+  }
+  
+  ngAfterContentInit(){
+    
+  }
+
+}

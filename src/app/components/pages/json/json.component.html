@@ -1,0 +1,58 @@
+<div class="bg-danger text-white p-2" *ngIf="!EmployeesArray">Error! json-server is not running. Terminal : json-server --watch db.json</div>
+<span class="bg-success text-white p-1">added table sorting</span>
+<table *ngIf="EmployeesArray" class="table table-border table-hover table-striped">
+  <thead>
+    <th (click)="sortTable('id')">
+      id
+      <i class="bi bi-sort" [ngClass]="{
+        'bi bi-sort-up-alt': sortedColumn === 'id' && sortDirection === 'asc',
+        'bi bi-sort-down': sortedColumn === 'id' && sortDirection === 'desc'
+      }" aria-hidden="true"></i>
+    </th>
+    <th (click)="sortTable('name')">Name *Icon 
+      <i class="bi bi-sort" [ngClass]="{
+        'bi bi-sort-up-alt': sortedColumn === 'name' && sortDirection === 'asc',
+        'bi bi-sort-down': sortedColumn === 'name' && sortDirection === 'desc'
+      }" aria-hidden="true"></i>
+    </th>
+    <th (click)="sortTable('email')">email</th>
+    <th (click)="sortTable('designation')">designation</th>
+    <th (click)="sortTable('married')">married</th>
+    <th (click)="sortTable('gender')">gender</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of EmployeesArray">
+      <td>{{employee.id}}</td>
+      <td>{{employee.name}}</td>
+      <td>{{employee.email}}</td>
+      <td>{{employee.designation}}</td>
+      <td>{{employee.married}}</td>
+      <td>{{employee.gender}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="container-xl bg-white p-2">
+	<button class="btn btn-primary" (click)="openModal(modalContent)">Add Employee</button>
+  <button class="btn btn-info p-2 ms-2" (click)="ShowDynamicTable=true">Show DynamicTable</button>
+  <a class="btn btn-outline" target="_blank" href="https://ng-bootstrap.github.io/#/components/table/examples#sortable">ng bootstrap - table sorting</a>
+  <a class="btn btn-outline" target="_blank" href="https://www.youtube.com/watch?v=4mKY_yDq64g&list=PLqh3_CZubhYTLvUfTPcQ9QbniGnEL6lw8">Full Youtube Video with MaterialUI</a>
+</div>
+
+<ng-template #modalContent let-modal>
+	<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-addemployee></app-addemployee>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+  </div>
+</ng-template>
+
+<div class="bg-white" *ngIf="ShowDynamicTable">
+	<app-table [TableData]="EmployeesArray"></app-table>
+</div>

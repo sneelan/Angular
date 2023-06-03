@@ -1,0 +1,226 @@
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 >Custom Directive in Angular</h4>
+  <div class="row">
+    <div class="col-4">
+      <div class="alert alert-success m-0">Componetns</div>
+      <div class="bg-light">Components are directive with a template <br> Ex: App componetn.</div>
+  </div>
+    <div class="col-4">
+      <div class="alert alert-success m-0">Attribute Directive</div>
+      <div class="bg-light">Ex: ngClass, ngStyle</div>
+    </div>
+    <div class="col-4">
+      <div class="alert alert-success m-0">Structural Directive</div>
+      <div class="bg-light">Ex: ngIF, ngFor</div>
+    </div>
+  </div>
+  <h4 >Custom Directive</h4>
+  <div class="container p-3" setBackground> Custom Directive "setBackground"- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi cumque fugit reiciendis, eveniet repellat similique</div>
+  <ul>
+    <li>Create a folder, add file setbackground.directive.ts</li>
+    <li>app.module.ts--->import setBackgroundDirective from '....setbackground.directive';</li>
+    <li class="text-danger">Directive Dom manipulation through nativeElement is not recoomended. use Renderer2 method</li>
+  </ul>
+  <textarea class="small w-100 p-2">
+import {{ Directive, ElementRef, OnInit from "@angular/core";
+@Directive({selector : '[setBackground]'})
+export class setBackgroundDirective implements OnInit{
+  constructor (private element : ElementRef){this.element = element;}
+  ngOnInit(){this.element.nativeElement.style.backgroundColor='#C8E6C9';}
+}
+  </textarea>
+  
+  <h4 >Use Renderer2 -(ng generate directive **name)</h4>
+  <div class="container p-3" highLight> Custom Directive "setBackground"- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi cumque fugit reiciendis, eveniet repellat similique</div>
+  <textarea class="small w-100 p-2">
+  constructor (private element : ElementRef, private renderer : Renderer2){this.element = element;}
+  ngOnInit(){this.renderer.setStyle(this.element.nativeElement, 'backgroundColor','#D88888');}
+  </textarea>
+  
+  <h4 >@HostListener - Mouse over, out</h4>
+  <div class="container bg-info" appHover> Mouse Over Effect - Custom Directive "setBackground"- Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi cumque</div>
+  <textarea class="small w-100 p-2">
+    @HostListener('mouseenter') onmouseover(){
+      this.renderer.setStyle(this.element.nativeElement, 'padding','30px');}
+  </textarea>
+  
+  <h4 >@HostBinding - style:any css properties</h4>
+  <div class="row">
+    <div class="col-2" ><div appHbinding [defaultColor]="'cyan'" [DarkColor]="'darkblue'">HostBinding</div></div>    
+    <div class="col-2" ><div appHbinding>HostBinding</div></div>    
+    <div class="col-2" ><div appHbinding [DarkColor]="'black'" [mytextColor]="'white'" >HostBinding</div></div>    
+    <div class="col-2" ><div appHbinding [roundedSize]="'100px'" >HostBinding</div></div>    
+    <div class="col-2" ><div [appHbinding]="'blue'" >Theme 1</div></div>    
+    <div class="col-2" ><div [appHbinding]="'dark'" appHover>Theme 2</div></div>    
+  </div>
+    div appHbinding <br>
+    @HostBinding('style.border') border:string ='2px solid red'; <br>
+    <b>Binding Directing Properties using @Input Decorator: </b>
+    [defaultColor]="'gray'" [DarkColor]="'black'" [mytextColor]="'white'" <br>
+    Also you can use Alias [DirectiveName]="'dark'" -> [appHbinding]="'dark'"
+    <hr>
+    <h4>Custom Class Directive  - instead of ngClass</h4>
+    instead using this -> [ngClass]='classname:condition, class2:condition '<br>
+    use custom class directive -> [myclass]=' themebgcolor:true, themetextolor:false'<br>
+    <div class="row">
+      <div class="col-2" ><div [myclass]="{themebgcolor:true, themetextolor:true}">HostBinding</div></div>
+      <div class="col-2" ><div [myclass]="{'bg-danger':true, 'text-white':true, rounded:true, 'p-2':true}">HostBinding</div></div>
+
+      <hr>
+      <h4>Conditional Directive</h4>       
+        <b>Find out the Highest Score?</b> <br>
+        <div class="row">
+          <div class="col-2 small" *ngFor="let score of scores" >
+            <div [appMycond]="score.run === GethighScore.run" class="border shadow rounded text-center p-1">{{score.name}} <br> {{score.run}}</div>
+          </div>
+        </div>
+        <textarea class="small w-100 p-2 mt-2">
+scores=[{name:'Rajesh', run:111, img:"<i class='bi bi-person-circle'></i>"},];
+GethighScore=this.gethighScroe();
+gethighScroe(){
+let myhighscore = [...this.scores];
+//learn sorting array method // descending order, [0]-first element
+return myhighscore.sort((curr,next) => next.run - curr.run)[0];
+}
+mycond.directive.ts
+@Input() set appMycond(condition:boolean){
+  if(condition){
+  this.renderer.addClass(this.element.nativeElement, 'bg-warning');
+  }
+}
+===========
+Final 
+[appMycond]="score.run === GethighScore.run"
+</textarea>
+</div>
+
+
+<hr>
+<h4>Custom Style Directive - instead of ngStyle</h4>  
+<div class="row">
+<div  [myStyle]="{backgroundColor:enableMystyle ? 'green': 'red', color:'white'}" class="col-4 border shadow rounded text-center p-1"> Sample</div>
+<div  [myStyle]="{  color:'orange'}" class="col-4 border shadow rounded text-center p-1"> Sample</div>      
+</div>
+  
+<textarea class="small w-100 p-2 mt-2">
+  [myStyle]="{backgroundColor:xxx,xxx:'yyy'}"
+  backgroundColor:enableMystyle ? 'green': 'red'
+  enableMystyle:boolean=true;        
+</textarea>
+
+<hr>
+  <h4 class="fs-3">How Structural Directive Works - ng-template</h4>
+  <div>     
+    If elese condition with temlate reference, ng-template   if=Shownotice; else: ShowMessage
+    <div class="row">
+      <div class="col-6">
+        <div *ngIf="Shownotice; else: ShowMessage" class="alert alert-danger">using Div - If elese condition</div>
+        <ng-template #ShowMessage>
+          <div >Notice Hidden!</div>
+        </ng-template>
+        <button (click)="Shownotice=false">Hide Notice</button> <button (click)="Shownotice=true">Show Notice</button>
+      </div>
+      <div class="col-6">
+        <ng-template [ngIf]="ShownoticeNew" [ngIfElse]="ShowmessageNew"> <div class="alert alert-danger">Using ng-template [ngIf]="ShownoticeNew" </div></ng-template>
+        <ng-template #ShowmessageNew>
+          <div >Notice Hidden!</div>
+        </ng-template>
+        <button (click)="ShownoticeNew=false">Hide Notice</button> <button (click)="ShownoticeNew=true">Show Notice</button>
+      </div>
+    </div>
+    <textarea class="w-100 mt-2" >
+    div *ngif="condition: else:Reference" ---> Converts to <ng-template></ng-template>
+    <div *ngIf="Checkvariable; else: Divname"></div>
+    <ng-template #Divname></ng-template>
+    IMportant: you can use directly ng-template without div for structural directive
+    <ng-template [ngIf]="Checkvariable; else: Divname"></ng-template>
+  </textarea>   
+  </div>
+
+
+
+<hr>
+  <h4>Custom Structural Directive - instead of *ngIf</h4>  
+  <div class="row">
+    <div *If="DisplayCondition" class="col-6 border shadow rounded text-center p-3 bg-info">
+      using Div Element - *If</div>
+    <ng-template [If]="DisplayCondition"><div class="col-6 border shadow rounded text-center p-3 bg-warning">
+using ng-template code [if]</div></ng-template>
+<div class="col-5 mt-2">
+  <button (click)="DisplayCondition=false">Assign value to false</button>
+  <button (click)="DisplayCondition=true">Assign value to true</button>
+</div>
+    </div>     
+    <textarea class="small w-100 p-2 mt-2">
+<div *If="DisplayCondition"></div>
+*If="DisplayCondition"  
+constructor(private template:TemplateRef<any>, private viewContainer: ViewContainerRef) { }
+@Input() set If(condition:boolean){
+if(condition){
+this.viewContainer.createEmbeddedView(this.template);
+}else{this.viewContainer.clear();}    
+    </textarea>
+    <hr>
+
+
+
+
+    <h4>Custom Switch Directive - instead of *ngSwitch="switch_expression"</h4>  
+<div class="row">
+  <div class="col-4 " [ngSwitch]="occupation">
+  <div *ngSwitchDefault class="text-center p-3 border">Select your  occupation</div>
+  <div *ngSwitchCase="'Designer'" class="text-center p-3 bg-info">Designer-Content</div>
+  <div *ngSwitchCase="'Developer'" class="text-center p-3 bg-danger text-white">Developer-Content</div>
+  <div *ngSwitchCase="'Admin'" class="text-center p-3 bg-success text-white">Admin-Content</div>
+  </div> 
+  <div class="col-6">
+    <button (click)="occupation='Designer'" class="me-2">Designer</button>
+    <button (click)="occupation='Developer'" class="me-2">Developer</button>
+    <button (click)="occupation='Admin'" class="me-2">Admin</button>
+  </div>
+</div>
+    
+    <textarea class="small w-100 p-2 mt-2">
+ TS::: occupation:string='Designer';
+<div [ngSwitch]="occupation">
+  <div *ngSwitchDefault></div>
+  <div *ngSwitchCase="'Developer'">
+</div>
+    </textarea>
+
+
+
+<h4>Dropdown Menu - dropdownDirective</h4> 
+<div>
+  <div class="dropdown" dropdownDirective>
+    <button 
+    
+    class="btn btn-secondary dropdown-toggle" 
+    
+    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+</div>
+<style>.dropdown.show .dropdown-menu{display:block;} </style>
+<textarea class="w-100 p-1 small">
+  @HostBinding ('class.show') isOpen=false;
+  //clicling on menu only
+  //@HostListener('click') toggleOpen(){this.isOpen = !this.isOpen;this.addshow='show';}
+
+  //clicling on outside
+  @HostListener('document:click', ['$event']) toggleOpen(event: Event) {
+    this.isOpen = this.elRef.nativeElement.contains(event.target) ? !this.isOpen : false;
+  }
+  constructor(private elRef: ElementRef) {} 
+  <style>.dropdown.show .dropdown-menu{display:block;} </style>
+</textarea>
+
+
+</div>
+

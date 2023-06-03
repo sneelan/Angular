@@ -1,0 +1,31 @@
+<div class="bg-light">
+  Name: <input type="text" placeholder="name" [(ngModel)]="name"> 
+  <select class="select p-1"  [(ngModel)]="status">
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+  </select> 
+  <button class="btn btn-primary" (click)="addUser()">Add User</button>
+</div>
+<table class="table table-striped border table-hover"><tbody>
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td>
+    <td>{{user.status}}</td>
+  </tr>
+</tbody></table>
+<textarea class="w-100 p-2">
+  <input type="text" placeholder="name" [(ngModel)]="name"> 
+  <select class="select p-1"  [(ngModel)]="status"><option value="active">Active</option>
+-----------
+import  {UsersService}  from '../users.service';
+@Component -> providers: [UsersService]
+constructor(private thisuserServ:UsersService){  }
+users:{name:string, status:string}[]=[];
+ngOnInit(): void {this.users=this.thisuserServ.users;}
+addUser(){ this.thisuserServ.AddNewUser(this.name, this.status) }
+-----------
+user.service.ts
+export class UsersService {
+users=[{name:'neelan', status:'active'},]
+AddNewUser(name:string, status:string){this.users.push({name:name, status:status});
+}}
+</textarea>

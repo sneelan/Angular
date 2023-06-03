@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand text-center" href="#" style="width:100px;">Logo</a>
+    <ul class="nav nav-tabs">    
+      <li class="nav-item ="><a (click)="navigation('home')" [ngClass]="{'active bg-warning ':nav=='home'}" class="nav-link text-dark" aria-current="page">Home</a></li>
+      <li class="nav-item"><a (click)="navigation('aboutus')" [ngClass]="{'active bg-warning ':nav=='aboutus'}" class="nav-link text-dark" aria-current="page">About us</a></li>
+      <li class="nav-item"><a (click)="navigation('services')" [ngClass]="{'active bg-warning ':nav=='services'}" class="nav-link text-dark" aria-current="page">Services</a></li>
+      <li class="nav-item dropdown" dropdownDirective>
+        <a  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </li>
+    </ul>
+    <style>.dropdown.show .dropdown-menu{display:block;} </style>
+  </nav>
+  <div class="p-3 align-middle">Cart<span class="small text-secondary"> (
+   0
+    ) </span>
+  </div>
+</div>

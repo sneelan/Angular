@@ -1,0 +1,38 @@
+<div class="bg-warning p-2 ms-5 border border-secondary mb-2">Child Component : {{getMydata}}</div>
+<div class="row m-0">
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.html</div>
+    <textarea class="w-100 p-1 small" rows="5">
+<app-child [PassValue]="Newvalue"></app-child>        
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.ts</div>
+    <textarea class="w-100 p-1 small" rows="5">
+Newvalue:string='Neelan';
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.html</div>
+    <textarea class="w-100 p-1 small" rows="5">
+print PassValue
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.ts</div>
+    <textarea class="w-100 p-1 small" rows="5">
+import { Component,Input } from '@angular/core';
+@ Input() PassValue='';
+    </textarea>  
+  </div>
+  <textarea class="w-100 p-1 small" rows="5">
+<app-child [PassValue]="Newvalue"></app-child> 
+---
+Newvalue:string='Neelan';
+---
+import { Component,Input } from '@angular/core';
+@ Input() PassValue='';
+---
+print PassValue
+  </textarea>
+</div>

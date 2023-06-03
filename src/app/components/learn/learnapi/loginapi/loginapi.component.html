@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form login-formCSS" *ngIf="!Loggedin">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+      <div *ngIf="emailControl.invalid && (emailControl.dirty || emailControl.touched)" class="error-message">
+        <ng-container *ngIf="emailControl.errors?.['required']">Email is required.</ng-container>
+        <ng-container *ngIf="emailControl.errors?.['email']">Invalid email format.</ng-container>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control">
+      <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)" class="error-message">
+        <div *ngIf="passwordControl.errors?.['required']">Password is required.</div>
+      </div>
+    </div>
+    <div *ngIf="loginError" class="error-message">{{ loginError }}</div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">Login</button>
+  </form>
+  <div *ngIf="successMessage" class="bg-success text-white p-2 text-center mt-2">{{ successMessage }}</div>
+  <div *ngIf="Loggedin" class="border p-2 text-center mt-2 p-5 bg-secondary text-white">
+    <h1>Welcome Admin</h1>
+    <h1>Redirect to routes.navigate(dashboard url)</h1>
+  </div>
+</div>

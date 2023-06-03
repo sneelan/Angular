@@ -1,0 +1,6 @@
+aaaa
+<div [@fadeInOut]="showElement ? 'in' : 'out'">
+  <h1>Angular Animation Demo</h1>
+  <button (click)="toggleState()" [@buttonState]="currentState">Toggle State</button>
+  <div class="animated-box" [@bounce]="animateElement"></div>
+</div>

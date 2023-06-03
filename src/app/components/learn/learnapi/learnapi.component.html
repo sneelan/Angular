@@ -1,0 +1,194 @@
+<br>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4>Top API Websites</h4>
+  
+  <ul>
+    <li><b>Firebase</b>: </li>
+    <li><b>Postman API Network</b>: <a href="https://www.postman.com/api-network/" target="_blank">postman.com</a></li>
+    <li><b>RapidAPI</b>: <a href="https://rapidapi.com/" target="_blank">rapidapi.com</a></li>
+    <li><b>Public APIs</b>: <a href="https://public-apis.io/" target="_blank">public-apis.io</a></li>
+    <li><b>OpenWeatherMap</b>: <a href="https://openweathermap.org/api" target="_blank">openweathermap.org</a></li>
+    <li><b>REST Countries</b>: <a href="https://restcountries.com/" target="_blank">restcountries.com</a></li>
+    <li><b>SwaggerHub</b>: <a href="https://swaggerhub.com/" target="_blank">swaggerhub.com</a></li>
+    <li><b>Reqres.in</b>: <a href="https://reqres.in/" target="_blank">reqres.in</a></li>
+    <li><b>JSONPlaceholder</b>: <a href="https://jsonplaceholder.typicode.com/" target="_blank">jsonplaceholder.typicode.com</a></li>
+  </ul>
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4>Using Json Local Server. </h4>
+  <p>npm install -g json-server    -------     json-server --watch db.json</p>
+  <app-json></app-json>
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4>For API Request You need these</h4>
+  <ul>
+    <li>API Http Request you need below</li>
+    <li>HttpClient, HttpErrorResponse</li>
+    <li>HttpHeaders for posting data</li>
+    <li>private http : HttpClient</li>
+    <li>ngOnInit():void &#123; run the function this.getAllPosts();&#125;</li>
+    <li>public getAllPosts()&#123;this.http.get('url').subscribe(data =>&#123;this.PostsArray=data;&#125;);&#125;</li>
+    <li>add Delay function = setTimeout(() => &#123;&#125;, 4000);</li>
+    <li>data =>&#123;&#125;,(error: HttpErrorResponse) => &#123;this.Mymess=error.message;&#125;</li>
+    <li>set bootstrap+startProgressBar() &#123;&#125; with time interval increase value</li>
+  </ul>
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4>Login Reqres.io - Working Fine</h4>
+  <app-loginapi></app-loginapi>
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<h4>Reqres.io - Working Fine</h4>
+<h5>https://reqres.in/api/users</h5>
+
+<button type="button" (click)=" getAllUsers('https://reqres.in/api/users'); ">Load Users</button>
+ <button type="button" (click)=" getAllUsers('https://reqres.in/api/users/23'); ">Wrong User id</button>
+Loading: {{isLoading}} 
+<div *ngIf="isLoading" class="spinner-container"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>
+<style>.spinner-container {display: flex;justify-content: center;align-items: center;height: 100px;}  </style>
+
+
+<div class="progress mt-2" *ngIf="isLoading">
+  <div class="progress-bar" role="progressbar" [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">{{ progressValue }}%</div>
+</div>
+
+
+<div class="mt-2 row m-0 p-0 bg-light" *ngIf="UsersArray">  
+  <ng-container *ngFor="let product of UsersArray.data, let i=index">
+  <div class="col-3 mb-3 text-center" *ngIf="i<6"> <div class="card shadow text-center">    
+    <div class="text-center"><img src="{{product.avatar}}" alt="" width="150"></div>
+    <div class="card-body" >
+      <h5 class="card-title">{{product.first_name +' '+product.last_name}}</h5>
+      <p class="m-0 small opacity-75"><u class="text-danger fw-bold">User id &#123;&#123;product?.id&#125;&#125;</u></p>
+      <div class="text-centerx">email : {{product.email}}
+      </div>      
+    </div>
+  </div></div>
+</ng-container> 
+</div>
+<div class="border border-danger border-2 p-2 mt-2" *ngIf="orgErrorMessage1">
+  <div class="bg-warning p-2 fw-bold bg-opacity-25">Org Error Message : {{orgErrorMessage1}} <br></div>
+</div>
+</div>
+
+
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4>Wrong Request</h4>
+  <div class="border border-danger border-2">
+    Error Message : {{ErrorMessage}} <br>
+    <div class="bg-warning p-2 fw-bold bg-opacity-25">Org Error Message : {{orgErrorMessage}} <br></div>
+    <ul>
+      <li><strong>200</strong> OK: Request successful.</li>
+      <li><strong>400</strong> Bad Request: Invalid request or client-side error.</li>
+      <li><strong>401</strong> Unauthorized: Authentication required.</li>
+      <li><strong>403</strong> Forbidden: Access denied due to insufficient permissions.</li>
+      <li><strong>404</strong> Not Found: Requested resource not found.</li>
+      <li><strong>500</strong> Internal Server Error: Unexpected server error.</li>
+      <li><strong>503</strong> Service Unavailable: Server temporarily unable to handle the request.</li>
+    </ul>
+</div>
+</div>
+
+
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<h4>Multiple posts - it is an <span class="bg-danger text-white">Array</span>. used *ngFor</h4>
+<h5>https://jsonplaceholder.typicode.com/posts/1</h5>
+<div class="row m-0 p-0 bg-light" *ngIf="PostsArray">
+<ng-container *ngFor="let product of PostsArray, let i=index">
+  <div class="col-4 mb-3" *ngIf="i<6"> <div class="card shadow">    
+    <div class="card-body" >
+      <h5 class="card-title">&#123;&#123;product?.title&#125;&#125;</h5>
+      <p class="m-0 small opacity-75"><u class="text-danger fw-bold">User id &#123;&#123;product?.id&#125;&#125;</u></p>
+      <div class="text-centerx">&#123;&#123;product?.body&#125;&#125;
+      </div>      
+    </div>
+  </div></div>
+</ng-container> 
+</div>
+<textarea class="w-100 p-2">
+import &#123; HttpClient, HttpHeaders&#125; from '@angular/common/http';
+public getJsonValue:any;
+constructor(private http : HttpClient)&#123;&#125;
+ngOnInit():void &#123;this.getAllPosts();&#125;
+  public getAllPosts()&#123;
+    this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe(
+      data => &#123;
+        this.getJsonValue=data;
+      &#125;
+    ); 
+  &#125;
+</textarea> 
+</div>
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<h4>One post - it is an <span class="bg-danger text-white">Object</span> Not array. so we cannot use *ngFor</h4>
+  <h4>https://jsonplaceholder.typicode.com/posts/1</h4>
+  <ng-container>
+  <div class="card" style="width:300px;">    
+    <div class="card-body" >
+      <h5 class="card-title">&#123;&#123;getJsonValue?.title&#125;&#125;</h5>
+      <div class="text-centerx">&#123;&#123;getJsonValue?.body&#125;&#125;
+      </div>      
+    </div>
+  </div>
+  </ng-container>  
+</div>
+
+
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<div class="border mt-2 p-2">
+<h3>Get method - Site: jsonplaceholder - works(check server)</h3>
+<p>&#123;&#123;getJsonValue | json&#125;&#125;</p>
+<p>Copied for rference (if server fails): <br>
+  "userId": 1, "id": 1, "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto" </p>
+  </div>
+  public getJsonValue:any;<br>
+  public getMethod() function<br>
+    this.http.get('https://jsonplaceholder.typicode.com/posts/1').subscribe(<br>
+      data => CulryBRa<br>
+        this.getJsonValue=data;   <br>     
+        CulryBRa<br>
+    ); CulryBRa<br>
+    <span class="text-danger">this.http.get('URL').subscribe(add function+assign jsonvalue to data)</span>
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h3>POST method - Site: jsonplaceholder- works</h3>
+  <p>&#123;&#123;postJsonValue | json&#125;&#125;</p>
+  Need: import  HttpClient, HttpHeaders  from '@angular/common/http';
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<div class="border mt-2 p-2">
+<h3>Import Json Data Local</h3>
+*app-jsonimport
+<app-jsonimport></app-jsonimport>
+</div>
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+<ul>
+  <h3>Instruction</h3>
+  this.http.get==<br>
+<b>Get</b> = Receives Data<br>
+<b>Put</b> = Think of PUT as a full replacement or overwrite<br>
+<b>Patch</b> = On the other hand, PATCH is like making small updates<br>
+<b>Get</b> = On the other hand, PATCH is like making small updates<br>
+<b>Delete</b> = Removes
+<li><b>Needed Modules</b>: HttpClient, HttpHeaders, HttpErrorResponse</li>
+</ul>
+</div>

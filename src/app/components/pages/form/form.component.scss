@@ -1,0 +1,23 @@
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+
+  .form-field {
+    margin-bottom: 20px;
+
+    input.ng-invalid.ng-touched {
+      border-color: red;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  }
+
+  .submit-btn {
+    display: block;
+    margin-top: 20px;
+  }
+}

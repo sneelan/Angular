@@ -1,0 +1,21 @@
+<h2>Child component with @Output()</h2>
+
+<label for="item-input">Add an item:</label>
+<input type="text" id="item-input" #newItem>
+<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+<textarea class="w-100 mt-2">
+parent.ts=>
+addItem(newItem: string) {this.items.push(newItem);}
+---------------
+parent.html=>
+<app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+---------------
+child.ts=>
+import { Output, EventEmitter } from '@angular/core';
+@Output() newItemEvent = new EventEmitter<string>();
+addNewItem(value: string) {this.newItemEvent.emit(value);}
+---------------
+child.html=>
+<label for="item-input">Add an item:</label><input type="text" id="item-input" #newItem>
+<button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+</textarea>

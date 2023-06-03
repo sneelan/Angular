@@ -1,0 +1,12 @@
+<table class="table table-hover">
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.user}}</td>
+      <td>{{student.title}}</td>
+      <td>{{student.body}}</td>
+    </tr>
+  </tbody>
+</table>
+Needs :  add below to tsconfig.json
+"resolveJsonModule": true,
+"esModuleInterop": true

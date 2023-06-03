@@ -1,0 +1,63 @@
+<div class="bg-white p-2 ">
+  <h4>Add Employee Details</h4>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <div class="form-field">
+      <label for="name" >Name: </label>
+      <input type="text" formControlName="name" placeholder="Name" id="name"> 
+      <div *ngIf="isFieldValid('name')" class="error-message">
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+  
+    <div class="form-field">
+      <label for="name" >Email: </label>
+      <input type="email" formControlName="email" placeholder="Email">
+      <div *ngIf="isFieldValid('email')" class="error-message">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="dropdown">Types of employee</label>
+      <select formControlName="designation" id="dropdown">
+        <option value="" >Select an option</option>
+        <option value="designer" selected>Designer</option>
+        <option value="developer">Developer</option>
+        <option value="tester">Tester</option>
+        <option value="marketing">marketing</option>
+      </select>
+      <div *ngIf="isFieldValid('designation')" class="error-message">
+        {{ getErrorMessage('designation') }}
+      </div>
+    </div>
+
+
+    <div class="form-field">
+      <label>Gender</label>
+      <span>
+        <input type="radio" formControlName="gender" value="male" id="male">
+        <label for="male"> Male</label>
+      </span>
+      <span class="ms-2">
+        <input type="radio" formControlName="gender" value="female" id="female">
+        <label for="female"> Female</label>
+      </span>
+      <div *ngIf="isFieldValid('gender')" class="error-message">
+        {{ getErrorMessage('gender') }}
+      </div>
+    </div>
+
+    
+  
+    <div class="form-field">
+      <label for="checkbox">Married</label>
+      <input type="checkbox" formControlName="married" id="checkbox">
+      <div *ngIf="isFieldValid('checkbox')" class="error-message">
+        {{ getErrorMessage('married') }}
+      </div>
+    </div> 
+    <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
+  </form>
+  <div *ngIf="postData" class="small p-2">{{postData| json}}</div>
+  <div *ngIf="successMessage" class="bg-success text-white p-2 text-center mt-2">{{ successMessage }}</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="bg-white p-2 mb-2 rounded shadow">
+  <h4 class="fs-3">View Encapsulation</h4>
+  <div class="border p-3 text-center">
+    <button class="btn border mybtn">Sample Button</button>
+  </div>
+  <div class="row p-4 m-0">
+    <div class="border col-6">
+      <app-comp1></app-comp1>
+    </div>
+    <div class="border col-6">
+      <app-comp2></app-comp2>
+    </div>
+  </div>
+  <div>
+     <span class="fs-6">encapsulation:ViewEncapsulation.None, Emulated, ShadowDom</span> :
+
+      <div class="col-12 border border-danger p-2">
+        <div class=" text-center"><b>None </b><button class="btn border mybtn">Sample Button</button></div>
+        <div class="row">
+          <div class="col-6 text-center"><b>Empty </b><button class="btn border mybtn">Sample Button</button></div>
+          <div class="col-6 text-center"><b>Empty </b><button class="btn border mybtn">Sample Button</button></div>
+        </div>
+      </div>
+
+      <div class="col-12 border border-danger p-2 my-3">
+        <div class="fw-bold fs-4">Default - Angular Uses Emulated</div>
+        <div class=" text-center"><b>Emulated </b><button class="btn border mybtn">Sample Button</button></div>
+        <div class="row">
+          <div class="col-6 text-center"><b>Empty </b><button class="btn border">Sample Button</button></div>
+          <div class="col-6 text-center"><b>Empty </b><button class="btn border">Sample Button</button></div>
+        </div>
+      </div>
+      <div class="col-12 border border-danger p-2">
+        <div class=" text-center"><b>none</b><button class="btn border mybtn">Sample Button</button></div>
+        <div class="row">
+          <div class="col-6 text-center"><b>Empty </b><button class="btn border orangebtn">Sample Button</button></div>
+          <div class="col-6 text-center"><b>ShadowDom </b><button class="btn border">Sample Button</button></div>
+        </div>
+      </div>
+  </div>
+</div>

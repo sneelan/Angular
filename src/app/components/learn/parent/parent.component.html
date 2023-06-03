@@ -1,0 +1,36 @@
+<div class="border border-secondary mb-2 p-3 alert bg-white">
+  <h4 class="fs-3">@input</h4>
+  <div class="border border-secondary p-2"> Parent Component: <input type="text" [(ngModel)]="neelanData" ></div>
+  <app-test-child [getMydata]="neelanData"></app-test-child> 
+</div>
+
+<div class="shadow p-3 alert m-0 rounded-0 {{ChildValueReceived}}" 
+[ngClass]="{'bg-white': ChildValueReceived==''}"
+>
+  <h4 class="fs-3">Parent Component {{ChildValueReceived}}</h4>
+  From Parent Component: <input type="text" placeholder="Search word" [(ngModel)]="myvalue" (input)="myentervalue()"> 
+</div>
+<div class="ms-5 bg-light border shadow mb-2 p-3 alert rounded-0">
+  <h4 class="fs-3">Child Component </h4>
+  <app-child (Sendvalue)="ReceiveValue($event)" [PassValue]="Newvalue"></app-child>
+</div>
+
+
+
+
+
+<div class="border border-secondary mb-2 p-3 alert bg-white">
+  <h4 class="fs-3">@Output</h4>    
+  <div class="border border-secondary p-2"> Parent Component: {{myReceiveD}}</div>
+  <app-test-child2 (mySendvalue)="myReceiveValue($event)"></app-test-child2>
+</div>
+<div class="bg-white shadow p-3 alert m-0 rounded-0">
+  <h3>Parent component receiving value via @Output()</h3>
+  <ul>
+    <li *ngFor="let item of items">{{item}}</li>
+  </ul>
+</div>
+<div class="ms-5 bg-light border shadow mb-2 p-3 alert rounded-0">
+  <app-item-output (newItemEvent)="addItem($event)"></app-item-output>
+</div>
+

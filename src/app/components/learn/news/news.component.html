@@ -1,0 +1,13 @@
+<div class="border p-2">
+  <h6 class="p-2 bg-dark text-light">{{childpost.title}}</h6>
+  <div 
+  [ngClass]="{
+    'bg-primary': childpost.category=='design',
+    'bg-danger': childpost.category=='photography',
+    'bg-dark': childpost.category!='design' &&  childpost.category!='photography'
+    
+  }"
+  class=" text-white p-2 d-inline-block">{{childpost.category}}</div>
+  <div>{{childpost.postid}}</div>
+  <button (click)="SendBtnFunction(childpost.title, childpost.category)">Send to Parent</button>
+</div>

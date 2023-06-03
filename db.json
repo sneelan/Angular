@@ -1,0 +1,61 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "name": "Neelan",
+      "email": "mm@gmail.com",
+      "designation": "designer",
+      "gender": "female",
+      "married": true,
+      "id": 1
+    },
+    {
+      "name": "Neelan",
+      "email": "mm@gmail.com",
+      "designation": "designer",
+      "gender": "female",
+      "married": true,
+      "id": 2
+    },
+    {
+      "name": "Rajesh",
+      "email": "raaaa@gmail.com",
+      "designation": "developer",
+      "gender": "male",
+      "married": true,
+      "id": 3
+    },
+    {
+      "name": "Mahi",
+      "email": "aaaa@gmail.com",
+      "designation": "marketing",
+      "gender": "male",
+      "married": true,
+      "id": 4
+    },
+    {
+      "name": "KALyani",
+      "email": "ddd@gmail.com",
+      "designation": "tester",
+      "gender": "male",
+      "married": true,
+      "id": 5
+    }
+  ]
+}

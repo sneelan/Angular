@@ -1,0 +1,138 @@
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Create Service in Angular </h4>
+  *app-mycustom - Custom directive <span class="d-inline-block bg-danger text-white p-1">alert.service.ts</span>
+  <div class="row">
+    <div class="col-6">
+      <app-child1></app-child1>
+    </div>
+    <div class="col-6">
+      <app-child2></app-child2>
+    </div>
+  </div>
+  <div class="bg-warning p-2">
+    <ul><li>
+      Hierarchical Injection: you can add this(providers: [AlertService]) to any parent component.ts file or root app.module.ts file
+    </li>
+    <li>no need to add to child component again and again.</li>
+    <li>Module.ts OR Parent component or Child component. based on Hierarchical need</li>
+  </ul> 
+   </div>
+   <hr>
+   <div class="row">
+    <div class="col-6 border p-3">
+      <h4 class="fs-3">Create Data Service in Angular <span class="d-inline-block bg-danger text-white p-1 fs-6">users.service.ts</span></h4>
+      *app-userpush ; array push using service.ts file
+      <app-userpush></app-userpush>
+    </div>
+    <div class="col-6">
+      <h4 class="fs-3">Multiple Service Request Injecting</h4>      
+      <app-multiple></app-multiple>
+      Option 1: Imported 
+      <span class="d-inline-block bg-danger text-white p-1">alert.service.ts</span>
+      <span class="d-inline-block bg-danger text-white p-1 ms-2">users.service.ts</span>
+      files in X.component.ts file <hr>
+      Option 2: <span class="d-inline-block bg-danger text-white p-1">OR! You can directly import *service.ts file into another *.service.ts file. </span>
+      but you have to add these injectable code inside the *.service.ts file.
+      import Curly( Injectable) from @angular/core
+      import Curly( ServiceNmae ) from XX.service.ts file. <a href="https://www.youtube.com/watch?v=v6hLg-YnMj4">Watch Video</a>
+    </div>
+
+   </div>
+  <hr>
+  <div>
+    <h4 class="fs-3">Show User Data in Another Component</h4>
+    <div class="row">
+      <div class="col-6 border">
+        *app-userdata
+        <app-userdata #appuserdata></app-userdata>
+      </div>
+      <div class="col-3 border bg-success text-white">
+        *app-subject
+        <app-subscribe></app-subscribe>
+      </div>
+      <div class="col-3 border bg-success text-white">
+        *app-localreference 
+        <app-localreference [NewselectedUser]="appuserdata.NewSelectedUser"></app-localreference>
+      </div>
+    </div>
+  </div>
+  <h2>How it Works with Subect subscription method</h2>
+  <textarea class="w-100 p-2">
+  1.The Parent component contains two child components, Child1 and Child2.
+  2.Child1 component displays a list of users and has a button for each user.
+  3.When the button is clicked in Child1 component, it triggers an function which is set from userdata.service.ts file
+  4.Child1 component uses a shared service called UserData to pass the selected user data.
+  5.The UserData has a method called setSelectedUser that receives the selected user data.
+  6.The setSelectedUser method of UserData uses a subject to notify any subscribers (in this case, Child2 component) that the selected user has changed.
+  import { Injectable } from '@angular/core';
+  import { Subject } from 'rxjs';
+  private selectedUserSubject = new Subject<any>();
+  selectedUser$ = this.selectedUserSubject.asObservable(); // it is observable.    
+  setSelectedUser(user: any) { 
+      this.selectedUserSubject.next(user);   
+  } 
+
+  7.Child2 component subscribes to the selectedUser$ observable of the UserData, which allows it to receive updates whenever a new user is selected.
+  8.When Child2 component receives an update, it stores the selected user data and displays the email, phone, and password of the selected user.
+  In summary, Child1 component triggers an event and passes the selected user data to the UserData. Child2 component subscribes to the UserService to receive the selected user data and update its view accordingly. This way, the selected user data is effectively passed from Child1 to Child2 component.
+  </textarea>  
+  </div>
+
+
+
+
+
+
+
+<div class="bg-white rounded p-2">
+  <h4 class="fs-3">Share data between siblings</h4>
+</div>
+  <div class="ms-5 mt-2">
+  <div class="bg-white rounded p-2">    
+    <h4 class="fs-3">Option 1 : using Shared Data.Service.ts file, Subject</h4>
+    <p>used a data.service.ts file, </p>
+    <div class="row m-0 p-0">
+      <div class="col-6 border"><h4 class="fs-3">Sibling 1 Component</h4></div>
+      <div class="col-6 border"><h4 class="fs-3">Sibling 2 Component</h4></div>
+    </div>*app-sibling 
+      <app-sibling></app-sibling>
+      <ul>
+        <li>import  Injectable  from '@angular/core'; import  Subject  from 'rxjs';</li>
+        <li>private dataSubject = new Subject any ();</li>
+        <li>data$ = this.dataSubject.asObservable();</li>
+        <li>sendData(data: any) this.dataSubject.next(data);</li>
+        <li>import DataService in both sibling --import  DataService </li>
+      </ul>      
+  </div> 
+   
+  <div class="bg-white rounded p-2  mt-2">
+    <h4 class="fs-3">Option 2 : @Output + @ViewChild</h4>
+    <p>use the @Output and EventEmitter mechanism to pass data between sibling components</p>
+    <div class="row m-0 p-0">
+      <div class="col-6 border"><h4 class="fs-3">Sibling 1 Component</h4></div>
+      <div class="col-6 border"><h4 class="fs-3">Sibling 2 Component</h4></div>
+    </div>
+  *app-eventshare 
+  <app-eventshare></app-eventshare>
+  <ul>
+        <li>import  Sibling2Component  from</li>        
+        <li>In the Parent component you have to import the sibling1 component.         </li>        
+        <li>@ViewChild (Sibling2Component) sibling2: Sibling2Component;</li>
+        <li>child1DataHandler(data: string) function===this.sibling2.<u><b>handleData</b></u>(data);</li>
+      </ul>
+  <textarea class="w-100 p-2">
+    In this example, when the "Send Data" button in Child1Component is clicked, it emits the data through the dataEvent @Output property. The ParentComponent listens to this event and calls the child1DataHandler method, passing the received data as an argument. Then, the ParentComponent can pass this data to Child2Component or perform any other required actions.    
+  </textarea>
+</div>
+<div class="bg-white rounded p-2  mt-2">
+    <h4 class="fs-3">Option 3 : Between Two Different Components without event emitter & Data Shared service* Fixing</h4>
+    <p></p>
+    <app-simpleshare></app-simpleshare>
+</div>
+<div class="bg-white rounded p-2  mt-2">
+  <h4 class="fs-3">Option 4 : Very Easy by Template Reference & @Input</h4>
+  <p></p>
+  <app-reference></app-reference>
+</div>
+</div>

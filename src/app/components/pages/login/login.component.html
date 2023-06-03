@@ -1,0 +1,52 @@
+<div class="row m-0 p-0 bg-white p-2">
+  <div class="col-4 border">
+    
+
+    <div class="bg-white shadow rounded mb-2 p-3 alert">
+      <div class="login-container" [hidden]="HideLogin">
+        <h2>Login - use admin, password</h2>
+        <form (ngSubmit)="login()" #loginForm="ngForm" [ngClass]="ngFormClass">
+          <div class="form-group">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" [(ngModel)]="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" required>
+          </div>
+          <button type="submit" [disabled]="!loginForm.valid">Login</button><span class="text-danger fw-bold mt-2 ps-3 d-inline-block" *ngIf="LoginMessage=='error'">Invalid!</span>
+        </form>  
+      </div>
+      <div class="bg-success text-white p-2 mt-2" *ngIf="LoginMessage=='success'">You are successfully logged in!</div>
+      </div>      
+
+      <div class="border shadow p-2"><app-form1></app-form1></div>
+  </div>
+  <div class="col-4 border"><app-form></app-form></div>
+  <div class="col-4 border">  
+<p><b>app.module.ts</b> ==>Should import <b><u>ReactiveFormsModule</u></b>
+<br>
+Purpose: programatic validation, reactive form controls, form groups, and form arrays.  define the form structure and behavior programmatically using TypeScript, allowing for more control and flexibility compared to template-driven forms</p>
+<ul>    
+<li><b>ng-pristine:</b> Represents a form control or form element that has not been modified or interacted with by the user.</li>
+<li><b>ng-dirty:</b> Represents a form control or form element that has been modified or interacted with by the user.</li>
+<li><b>ng-touched, ng-untouched</b> Represents a form control or form element that has been touched or focused by the user.</li>
+<li><b>ng-valid:</b> Represents a form control or form element that has passed all validation checks.</li>
+<li><b>ng-invalid:</b> Represents a form control or form element that has failed at least one validation check.</li>
+<li><b>ng-pending:</b> Represents a form control or form element that is currently undergoing asynchronous validation.</li>
+<li><b>ng-submitted:</b> Represents a form that has been submitted.</li>
+    </ul>
+  </div>
+</div> 
+
+<textarea class="w-100 p-2">
+  app.module.ts==>Should import ReactiveFormsModule from '@angular/forms';
+  import  FormBuilder, FormGroup, Validators  from '@angular/forms';
+sampleForm: FormGroup;
+constructor(private formBuilder: FormBuilder) 
+ngOnInit() {
+  this.form = this.formBuilder.group({
+    email: ['mm@gmail.com', [Validators.required, Validators.email]],
+  });
+}
+</textarea>

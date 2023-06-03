@@ -1,0 +1,42 @@
+
+<div class="bg-white p-2 mb-2 rounded shadow">
+  <h4 class="fs-3">LifeCycle Hook in Angular</h4>  
+  <div>Constructor, ngOnChanges, ngOnInit, ngDoCheck, ngAfterContentInit,ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy</div>
+  <h4 class="lh-lg">
+    <div class="border border-3 border-primary p-2">
+    ng On <b class="text-primary">Changes</b> <br>
+    ng On <u>Init</u> <br>
+    ng Do Check <br>
+    </div>
+    ng After <b class="text-primary">Content</b> Init <br>
+    ng After <b class="text-primary"> Content</b> Checked <br>
+    ng After <b class="text-secondary"> View</b> Init <br>
+    ng After <b class="text-secondary"> View</b> Checked <br>
+    ng On <b class="text-danger">Destroy</b> <br>
+  </h4>
+  <a class="btn btn-success" (click)="Shoconsole='hide'">Show - Console Check with Hook</a>
+  <a class="ms-2 btn btn-success" (click)="Shoconsole=''">Hide</a>
+<div *ngIf="Shoconsole!=''">
+
+  <div class="row mt-2">
+    <div class="col-6">
+      <div class="border p-4 shadow">
+        <input type="text" #input>
+        <button (click)="OnSubmit(input)">Submit</button>
+        <app-hookdemo [value]="inputText" #getconsole>
+          <h3>Child : This is a Projected Content {{inputText}}</h3>
+        </app-hookdemo>
+      </div>
+  
+    </div>
+    <div class="col-6 bg-dark text-white p-0">
+      <div class="bg-primary text-white p-1 mb-1">Console.log</div>
+        <small>
+          <div class="px-2 small" [innerHTML]="getconsole.myconsole"></div> 
+        </small>    
+      
+    </div>
+  </div>
+
+</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="bg-dark text-white p-2 rounded-top">Component - customers - learn/customers</div>
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Search, Filter, For</h4>
+  <table class="table table-hover table-striped align-middle"><tbody>
+    <tr *ngFor="let customer of customers; let i=index" [ngClass]="{'bg-warning':SelectedCustomer==customer.name}">
+      <td>{{customer.name}}</td>
+      <td>{{customer.category}}</td>
+      <td><span class="small">span [innerHTML]="customer.img" </span> <span [innerHTML]="customer.img"></span> </td>
+      <td>
+        <a class="btn btn-primary me-2" (click)="SelectedCustomer=customer.name">Select</a>
+        <a class="btn btn-danger" (click)="removeCustomer(i)">Remove</a>
+      </td>
+    </tr>
+  </tbody></table>
+  Inside Component : <span class="text-danger" *ngIf="SelectedCustomer!=''">{{SelectedCustomer}}</span> <br>
+  removeCustomer(id:number) function ---- this.customers.splice(id, 1);
+</div>
+

@@ -1,0 +1,104 @@
+<div class="bg-warning p-2 ms-5 border border-secondary mb-2">
+  Child Component : 
+  <input type="text" [(ngModel)]="neelanData1" #neelanDataz (input)="mysendData(neelanDataz.value)">
+  (input)-on input changes, blur, click
+  <button type="button"(click)="mysendData(neelanDataz.value+' from button')" >Send to Parent</button>
+  
+</div>
+<div class="row m-0">
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.html</div>
+    <textarea class="w-100 p-1 small" rows="6">
+<app-item-output (newItemEvent)="addItem($event)"></app-item-output>   
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.ts</div>
+    <textarea class="w-100 p-1 small" rows="6">
+addItem(newItem: string) {this.items.push(newItem);}
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.html</div>
+    <textarea class="w-100 p-1 small" rows="6">
+      <label for="item-input">Add an item:</label><input type="text" id="item-input" #newItem>
+      <button type="button" (click)="addNewItem(newItem.value)">Add to parent's list</button>
+      ============
+      (click)="ThemeChange('bg-warning')
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.ts</div>
+    <textarea class="w-100 p-1 small" rows="6">
+import { Output, EventEmitter } from '@angular/core';
+@Output() newItemEvent = new EventEmitter<string>();
+==============
+items = ['item1', 'item2', 'item3', 'item4'];
+addItem(newItem: string) {
+  this.items.push(newItem);
+}
+==============
+ThemeChange(gotValue:string){    
+  this.Sendvalue.emit(gotValue);      
+}
+    </textarea>  
+</div>
+</div>
+
+
+<div class="row m-0">
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.html</div>
+    <textarea class="w-100 p-1 small" rows="6">
+<app-test-child2 (mySendvalue)="myReceiveValue($event)"></app-test-child2>
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">Parent.ts</div>
+    <textarea class="w-100 p-1 small" rows="6">
+myReceiveD:string='';
+myReceiveValue(ZZZ: string) { this.myReceiveD=ZZZ;}
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.html</div>
+    <textarea class="w-100 p-1 small" rows="6">
+<input type="text" [(ngModel)]="neelanData1" #neelanDataz (input)="mysendData(neelanDataz.value)">
+<button type="button"(click)="mysendData(neelanDataz.value+' from button')" >Send to Parent</button>
+    </textarea>  
+  </div>
+  <div class="col-3 p-0">
+    <div class="bg-dark small text-white p-1">child.ts</div>
+    <textarea class="w-100 p-1 small" rows="6">
+neelanData1:string='789989';
+@Output() mySendvalue = new EventEmitter<string>();
+mysendData(AAA:string){
+  this.mySendvalue.emit(AAA);
+}
+    </textarea>  
+</div>
+<b>*Working</b>
+<textarea class="w-100 p-1 small" rows="6">
+  Child.html
+  Button (click)="SendBtnFunction(childpost.title, childpost.category)"
+  ----
+  Child.ts
+  *include OnInit
+  @Output() SendtoParent=new EventEmitter<{title:string, category:string}>();
+  SendBtnFunction(title:string, category:string ){
+    this.SendtoParent.emit({title, category});
+  }
+  ---
+  Parent Html
+  (SendtoParent)="ReceivefromChild($event)"
+  print receivedtitle;
+  ---
+  Parent TS
+  receivedtitle:string='';
+  receivedcategory:string='';
+  ReceivefromChild(receiveddata:{title:string, category:string}){
+  this.receivedtitle=receiveddata.title;
+  this.receivedcategory=receiveddata.category;
+  }
+</textarea>
+</div>

@@ -1,0 +1,557 @@
+*app-syntax
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Syntax</h4>
+  <div class="row">
+    <div class="col-3 align-middle"><h4 class="align-middle">Angular 16 New Features</h4></div>
+    <div class="col-9">
+      <textarea class="w-100 mt-2 p-2">
+        @input({Required}), ngSrc, Signals, <app/>, Fast Rendering, 
+
+        1. @input decorater with required.
+        @Input({required: true }) neelan:string='';
+        2. image directive <img ngSrc="logo.png" priority fill >
+        The primary advantage of using ng-src instead of src is to avoid potential 
+        issues when the expression evaluates to an empty or invalid URL. When using 
+        ng-src, Angular will evaluate the expression and only update the src attribute 
+        when a valid URL is provided, preventing the browser from making unnecessary 
+        requests.
+        3. Self closing tag <app-home [prop]="someVar"/>
+        4. angular signals
+        5. build faster apps by default
+        - signals let you react to state chnages everywhere. not just components
+        - signals are light weight, fast loading
+        5. 
+        <img [ngSrc]="imageUrl" alt="Sample Image" />
+        6. Reactive - Fast, Better run time performance, no flickering, server side rendering fast. 
+        7. new simple bootstrapmodule  from angular/platform-browser
+        without ngmodule code. less codes now.
+        8. ng new appname --standalone
+        hiding many config files. only adds less files
+        9. backward development - supports to change css variables. earlier version supports scss variables.
+        
+      </textarea>
+    </div>
+    <hr>
+
+
+
+
+    <div class="col-3 align-middle"><h4 class="align-middle">Declarate Array</h4></div>
+    <div class="col-9">
+      <textarea class="w-100 mt-2 p-2">servers=[{name:''}];
+        //servers=[{...}];
+        //const servers: Array >arrow>{name:string}> = [...];
+        //servers: server[] = [];
+        Employees:any[]= [{}] //working //@Input() Employees:any[];
+      </textarea>
+    </div>
+    <hr>
+
+    <div class="col-3 align-middle"><h4 class="align-middle">
+      Array - Get key values</h4></div>
+    <div class="col-9">
+      <textarea class="w-100 mt-2 p-2">
+<ng-container *ngFor="let data of TableData">
+<ng-container *ngFor="let prop of data | keyvalue">
+{prop.key}     {prop.value}</ng-container></ng-container>
+================
+<thead  *ngIf="TableData.length > 0">
+================
+*ngFor="let key of getObjectKeys(TableData[0])"
+{key}         {TableData[0][key]}
+@Input() TableData:any[];
+function===getObjectKeys(obj: any): string[] {return Object.keys(obj);}
+================
+value of another array with key
+[TableHeader]="[{name: 'New-name**', id: '*Newid'}]"  
+  <ng-container *ngIf="TableHeader[0][key]; else:valueempty">{TableHeader[0][key]}</ng-container>
+  <ng-template #valueempty>{key}</ng-template>
+      </textarea>
+    </div>
+    <hr>
+
+
+    <div class="col-3 align-middle"><h4 class="align-middle">Function to check if the array contains key-value pairs or values only</h4></div>
+    <div class="col-9">
+      <h5>Check : is this Simple Array ['raj', 'mahesh', 'neelan'] : {{isArrayWithKeyValues(['raj', 'mahesh', 'neelan'])}}</h5>
+      <h5>Check : is this Simple Array : {{isArrayWithKeyValues(['raj', 'mahesh', 'neelan'])}}</h5>
+<textarea class="w-100 mt-2 p-2">
+// Function to check if the array contains key-value pairs or values only
+export class SyntaxComponent { 
+// Function to check if the array contains key-value pairs or values only
+isArrayWithKeyValues(arr: any[]): boolean {
+  if (arr.length === 0) {
+    return false; // Empty array, cannot determine type
+  }
+  // Check if the first element is an object
+  if (
+    typeof arr[0] === 'object' &&
+    arr[0] !== null &&
+    !Array.isArray(arr[0])
+  ) {
+    // Check if it contains key-value pairs
+    return Object.keys(arr[0]).length > 0;
+  }
+
+  return false;
+}
+// Method to execute the logic and test array types
+testArrayTypes(): void {
+  const simpleArray = ['raj', 'mahesh', 'neelan'];
+  const arrayWithKeyValues = [{ memberid: '858', data: 'Sample1', user: 'neelan' },];
+  //console.log(this.isArrayWithKeyValues(simpleArray)); // Output: false
+  //console.log(this.isArrayWithKeyValues(arrayWithKeyValues)); // Output: true
+}
+</textarea>
+    </div>
+    <hr>
+
+
+
+
+
+
+    <div class="col-3 align-middle"><h4 class="align-middle">Fcuntion sample with :void</h4></div>
+    <div class="col-9">
+      <textarea class="w-100 mt-2 p-2">
+        function sayHello(): void {
+          console.log("Hello!");
+        }        
+        const result: void = sayHello(); // The return value is undefined
+        console.log(result); // Output: undefined
+      </textarea>
+    </div>
+    <hr>
+
+    
+    <div class="col-3 align-middle"><h4 class="align-middle">Check array object key with value</h4></div>
+    <div class="col-9">
+      <textarea class="w-100 mt-2 p-2">
+        BtnData=[{text:'Buy', theme:'primary', function:'PopUp'}];
+        if (this.BtnData.length > 0 && this.BtnData[0].hasOwnProperty('text'))
+      </textarea>
+    </div>
+    <hr>
+
+    <div class="col-3 align-middle"><h4 class="align-middle">index signature Method - ArrayName CURLyBraces [key: string]: string </h4></div> 
+    <div class="col-9">
+      <p>This index signature allows any string key to be used to access the corresponding string value. By providing this index signature, the TypeScript compiler can now correctly infer the type when indexing into the Themes object using this.BtnData[0].theme. In this updated code, an index signature  [key: string]: string  is added to the Themes object. Now, the line this.BtnTheme = this.Themes[this.BtnData[0].theme]; should work without any compilation errors.</p>
+      <textarea class="w-100 mt-2 p-2">
+        BtnData =  text: 'Buy', theme: 'primary', function: 'PopUp'
+        BtnTheme: string;        
+        Themes: { [key: string]: string } = { default: 'btn-success p-2',primary: 'btn-primary p-2'};
+        //Important : 
+        this.BtnTheme = this.Themes[this.BtnData[0].theme];
+      </textarea>
+    </div>
+    <hr>
+
+    <div class="col-3 align-middle"><h4 class="align-middle">Angular Events</h4></div> 
+    <div class="col-9">      
+      <ul>
+        <li><strong>Click:</strong> User interaction event</li>
+        <li><strong>Blur:</strong> Focus loss event</li>
+        <li><strong>Close:</strong> Element closure event</li>
+        <li><strong>Input:</strong> User input event</li>
+        <li><strong>Change:</strong> Value change event</li>
+        <li><strong>Submit:</strong> Form submission event</li>
+        <li><strong>KeyUp:</strong> Key released event</li>
+        <li><strong>KeyDown:</strong> Key pressed event</li>
+        <li><strong>MouseEnter:</strong> Mouse enters element event</li>
+        <li><strong>MouseLeave:</strong> Mouse leaves element event</li>
+        <li><strong>Scroll:</strong> Scrolling event</li>
+        <li><strong>Load:</strong> Element or document load event</li>
+        <li><strong>Focus:</strong> Element focus event</li>
+        <li><strong>Resize:</strong> Window or element resize event</li>
+        <li><strong>Error:</strong> Error event</li>
+      </ul>
+    </div>
+    <hr>
+
+
+
+
+
+
+
+
+    <div class="col-3 align-middle"><h4 class="align-middle">List of Syntax</h4></div> 
+    <div class="col-9">      
+      <ol>
+        <li><strong>ngIf:</strong> <code class="text-dark">*ngIf="condition"</code> - Conditionally renders content based on the truthiness of an expression.</li>
+        <li><strong>ngFor:</strong> <code class="text-dark">*ngFor="let item of items"</code> - Iterates over a collection and renders content for each item.</li>
+        <li><strong>ngSwitch:</strong> <code class="text-dark">[ngSwitch]="value"</code> - Conditionally renders content based on a matching value using multiple cases.</li>
+        <li><strong>ngClass:</strong> <code class="text-dark">[ngClass]="&#123; 'class-name': expression &#125;"</code> - Binds CSS classes to an element based on the evaluation of an expression.</li>
+        <li><strong>ngStyle:</strong> <code class="text-dark">[ngStyle]="&#123; 'property': expression &#125;"</code> - Binds inline CSS styles to an element based on the evaluation of an expression.</li>
+        <li><strong>ngModel:</strong> <code class="text-dark">[(ngModel)]="value"</code> - Binds the value of an input element to a property using two-way data binding.</li>
+        <li><strong>ngSubmit:</strong> <code class="text-dark">(ngSubmit)="onSubmit()"</code> - Binds a method to the submit event of a form element.</li>
+        <li><strong>ngClassEven/ngClassOdd:</strong> <code class="text-dark">[ngClassEven]="expression" [ngClassOdd]="expression"</code> - Binds CSS classes dynamically to elements in an ngFor loop based on even or odd index.</li>
+        <li><strong>ngSwitchCase:</strong> <code class="text-dark">*ngSwitchCase="value"</code> - Defines a case for the ngSwitch directive.</li>
+        <li><strong>ngSwitchDefault:</strong> <code class="text-dark">*ngSwitchDefault</code> - Defines a default case for the ngSwitch directive.</li>
+        <li><strong>ngStyleEven/ngStyleOdd:</strong> <code class="text-dark">[ngStyleEven]="expression" [ngStyleOdd]="expression"</code> - Binds inline CSS styles dynamically to elements in an ngFor loop based on even or odd index.</li>
+        <li><strong>ng-template:</strong> <code class="text-dark">&lt;ng-template&gt;&lt;/ng-template&gt;</code> - Defines a template that can be used to render content conditionally or repeatedly.</li>
+        <li><strong>ng-container:</strong> <code class="text-dark">&lt;ng-container&gt;&lt;/ng-container&gt;</code> - Provides a structural element that is used to group and manipulate multiple elements.</li>
+        <li><strong>ng-content:</strong> <code class="text-dark">&lt;ng-content&gt;&lt;/ng-content&gt;</code> - Represents projected content within a component's view.</li>
+        <li><strong>@ViewChild:</strong> <code class="text-dark">@ViewChild('elementRef') elementRef: ElementRef</code> - Obtains a reference to an element or directive in the component's view.</li>
+        <li><strong>@ContentChild:</strong> <code class="text-dark">@ContentChild('elementRef') elementRef: ElementRef</code> - Obtains a reference to an element or directive projected into the component.</li>
+        <li><strong>ngOnInit:</strong> <code class="text-dark">ngOnInit()</code> - Lifecycle hook that is called after the component has been initialized and its inputs have been set.</li>
+        <li><strong>ngOnDestroy:</strong> <code class="text-dark">ngOnDestroy()</code> - Lifecycle hook that is called when the component is about to be destroyed.</li>
+        <li><strong>ngAfterViewInit:</strong> <code class="text-dark">ngAfterViewInit()</code> - Lifecycle hook that is called after the component's view has been initialized and rendered.</li>
+        <li><strong>ngDoCheck:</strong> <code class="text-dark">ngDoCheck()</code> - Lifecycle hook that is called during every change detection run, allowing custom change detection logic.</li>
+      </ol>
+    </div>
+    <hr>
+
+        <div class="col-3 align-middle"><h4 class="align-middle">List of Syntax</h4></div> 
+    <div class="col-9">      
+  <textarea class="w-100 p-2">&lt;ng-container *ngTemplateOutlet="childTemplate"&gt;&lt;/ng-container&gt;     
+  &lt;ng-template #childTemplate&gt;
+    &lt;app-child&gt;&lt;/app-child&gt;
+  &lt;/ng-template&gt;
+  
+  &lt;ng-container *ngTemplateOutlet="childTemplate; context="{$implicit:'hi', message:'neelan'}"&gt;&lt;/ng-container&gt;
+  &lt;ng-template #childTemplate let-greeting let-message &gt;print greeting, message here&lt;/ng-template&gt;
+  
+  import { Component, ViewChild, TemplateRef } from '@angular/core';
+  @Component({
+    selector: 'app-parent',
+    templateUrl: './parent.component.html',
+  })
+  export class ParentComponent {
+    @ViewChild('childTemplate') childTemplate: TemplateRef&lt;any&gt;;
+
+    // Other component code...
+  }
+  </textarea>
+    </div>
+    <hr>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">See All Definitions! ngclass, if for style</h4>
+  
+  <button class="btn btn-danger border border-secondary-0 p-2 ms-2"  (click)="Showme='hide'"> Hide all Explanation</button>
+  <button class="btn btn-success border border-secondary-0 p-2"  (click)="Showme='show'">Show all Explanation</button>
+
+  <div class="ms-3 mt-2" [ngClass]="{'d-none':Showme == 'hide'}">
+
+    <div class="border border-secondary mb-2 p-3 alert">
+    <h4 class="fs-3">subscribe with Shared->user.service.ts</h4>
+    <textarea class="w-100 fs-6 small mt-2">
+Html
+<button (click)="showDetails(user)">Show *subscribe</button>
+==========
+TS
+import  &#123;UsersData&#125;  from '../userdata.service';
+implements OnInit
+constructor(private thisuserServ:UsersData)&#123;&#125;
+users:any[]:[];
+showDetails(user: any) &#123;
+    this.thisuserServ.setSelectedUser(user);
+    //alert(user.name);
+&#125;
+==========
+TS
+import  &#123;UsersData&#125;  from '../userdata.service';
+implements OnInit
+selectedUser: any;
+constructor(private thisuserServ: UsersData) &#123; &#125;
+  ngOnInit()&#123;
+    this.thisuserServ.selectedUser$.subscribe((user) => &#123;
+      this.selectedUser = user;
+    &#125;);
+  &#125;
+======================
+Html
+<p>Name: &#123;&#123; selectedUser?.name &#125;&#125;</p>
+======================
+userdata.service.ts
+import &#123; Injectable &#125; from '@angular/core';
+import &#123; Subject &#125; from 'rxjs';
+@Injectable()
+export class UsersData &#123;
+  userdata=[&#123;name:'a', id:'1', email:'b', phone:'333',password:'d'&#125;];
+  private SelectedSub = new Subject<any>();
+  selectedUser$ = this.SelectedSub.asObservable(); // it is observable.  
+    // data assigned to subject by .next_function()
+    setSelectedUser(user: any) &#123; 
+        this.SelectedSub.next(user); 
+        //alert("reached");
+    &#125;     
+&#125;
+    </textarea>
+    </div>
+
+
+    
+    <div class="border border-secondary mb-2 p-3 alert">
+      <h4 class="fs-3">ngTemplateOutlet - use TemplateRef module</h4>
+      *app-templateoutlet
+      <app-templateoutlet></app-templateoutlet>
+      <textarea class="w-100 fs-6 small mt-2">
+        <div>
+          <ng-container *ngTemplateOutlet="childTemplate"></ng-container>
+        </div>
+        <ng-template #childTemplate>
+          <app-child></app-child>
+        </ng-template>
+
+        import { Component, ViewChild, TemplateRef } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  templateUrl: './parent.component.html',
+})
+export class ParentComponent {
+  @ViewChild('childTemplate') childTemplate: TemplateRef<any>;
+
+  // Other component code...
+}
+      </textarea>
+
+
+
+      <h4 class="fs-3">ng-container</h4>
+      <p> In this example, the ng-container element acts as a placeholder or wrapper for the repeated <tr> elements inside the *ngFor directive. It allows us to apply the structural directive without introducing additional elements to the DOM</p>
+      <textarea class="w-100 mt-2">
+        <table>
+          <thead>..</thead>
+          <tbody>
+            <ng-container *ngFor="let user of users">
+              <tr>
+                <td> user.id </td>
+                <td> user.name </td>
+                <td> user.email </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+              
+      </textarea>
+      <h4 class="fs-3">Template Reference  #myVariable</h4>
+      <textarea class="w-100 mt-2">
+        <input type="text" #myVariable (keyup)="0" value="Sample">
+        <button class="btn btn-primary" (click)="myAlert(myVariable)">Alert</button>
+        <span class="ms-3 bg-success text-white p-2" *ngIf="myVariable.value !=''">myVariable.value</span>
+      </textarea>
+  
+  
+    </div>
+    
+    <div class="border border-secondary mb-2 p-3 alert">
+      <h4 class="fs-3">Alert: </h4>myAlert(myData: HTMLInputElement) function alert('your '+myData.value);
+    </div>
+    
+
+
+    <div class="bg-white border border-secondary rounded mb-2 p-3 alert">
+      <h3 class="fs-3">ngStyle - ngClass - Material Packaged added </h3>
+      <label id="example-radio-group-label"
+      [ngStyle]="{
+        'background-color':favoriteSeason=='Winter'?'orange'
+        :favoriteSeason=='Spring'?'violet'
+        :favoriteSeason=='Summer'?'yellow'
+        :favoriteSeason=='Autumn'?'pink':'white'
+      }"
+      >used ngClass - Pick your favorite season</label>  
+      <span class="bg-danger text-white p-1">I removed the material code - got conflict while using ng-bootstrap</span> <br>
+      <img src="../../../assets/img/material1.jpg" alt="">
+    
+    <div>Your favorite season is: used ngClass
+      <span class="p-2"
+      [ngClass]="{
+        'bg-success text-white': favoriteSeason == 'Winter',
+        'bg-danger text-white': favoriteSeason == 'Spring',
+        'bg-primary text-white': favoriteSeason == 'Summer',
+        'bg-secondary text-white': favoriteSeason == 'Autumn',
+      }"  
+      >{{favoriteSeason}}</span></div>
+    <textarea class="w-100 mt-2">
+    app.module.js -> import {MatRadioModule} from '@angular/material/radio';
+    imports -> MatRadioModule  
+    [ngStyle]="{
+      'background-color':favoriteSeason=='Winter'?'orange'
+      :favoriteSeason=='Spring'?'violet'
+      :favoriteSeason=='Summer'?'yellow'
+      :favoriteSeason=='Autumn'?'pink':'white'
+    }"
+    <mat-radio-group
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group"
+    [(ngModel)]="favoriteSeason">
+    <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+      season
+    </mat-radio-button>
+    </mat-radio-group>
+    </textarea>
+    <hr>
+      <h4 class="fs-3">ngClass</h4>
+      Necessary Fileds : 
+      <input type="text" [(ngModel)]="NewSearch" [ngClass]="{'bg-success text-white': NewSearch != ''}" /> 
+      <span class="text-danger fw-bold" [ngClass]="{'d-none': NewSearch != ''}"> * Add text</span>
+      <textarea class="w-100 mt-2">
+        [ngClass]="{bg-danger: NewSearch === ''}
+        [ngClass]="{bg-danger: NewSearch != ''}
+        [ngClass]="{class:condition, class:condtion}
+        [ngClass]="{1 : 'class1', 2 : 'class2', 3 : 'class4'}[Variable]"
+        <input type="text" [(ngModel)]="NewSearch" [ngClass]="{bg-danger: NewSearch === ''}"> 
+      </textarea>
+    </div>
+    <div class="bg-white border border-secondary rounded mb-2 p-3 alert">
+      <h4 class="fs-3">Simple ngModel & *ngIf</h4>
+      <input type="text" [(ngModel)]="NewSearchValue"> 
+       <span class="fs-5 alert alert-success p-0 px-2" *ngIf="NewSearchValue !=''"> you searched <span class="fw-bold">{{NewSearchValue}}</span></span>
+       <span class=" text-danger fw-bold" *ngIf="NewSearchValue ==''"> * Enter your value</span>
+      <textarea class="w-100 mt-2">
+        <input type="text" [(ngModel)]="NewSearchValue"> 
+        <span class="fs-5" *ngIf="NewSearchValue !=''"> you searched <span class="text-danger fw-bold">{{NewSearchValue}}</span></span> 
+        <span class=" text-danger fw-bold" *ngIf="NewSearchValue ==''"> * Enter your value</span>
+      </textarea>
+    </div>
+
+
+
+    <div class="border border-secondary mb-2 p-3 alert" >    
+    <h4 class="fs-3">ngClass <span class="h5">------[(ngModel)]="SelectedCategory"</span></h4>
+    <textarea class="w-100 mt-2">
+      [ngClass]="{'d-none': SelectedCategory!='all' && SelectedCategory != product.category    }"
+      ====================
+      [ngClass]="{        
+      'bg-danger': product.category == 'drawing',
+      'bg-primary ': product.category == '3d'
+      }"
+      ====================
+      [ngClass]="{
+      'bg-success text-white': favoriteSeason == 'Winter',
+      'bg-danger text-white': favoriteSeason == 'Spring',
+      'bg-primary text-white': favoriteSeason == 'Summer',
+      'bg-secondary text-white': favoriteSeason == 'Autumn',
+      }" 
+      ====================
+      [ngClass]="{bg-danger: NewSearch === ''}
+      [ngClass]="{bg-danger: NewSearch != ''}
+      [ngClass]="{class:condition, class:condtion}
+      [ngClass]="{1 : 'class1', 2 : 'class2', 3 : 'class4'}[Variable]"
+    </textarea>  
+  </div>
+  <div class="border border-secondary mb-2 p-3 alert">
+    <h4 class="fs-3">ngIf - elese</h4>
+    <textarea class="w-100 mt-2">
+    *ngIf="NewSearchValue !=''"
+    *ngIf="SelectedCategory =='all' || SelectedCategory == product.category"
+    *ngIf="SearchText=='' || product.title.toLowerCase().includes(SearchText)"
+    *ngif="condition: else:Reference"
+    <div *ngIf="Checkvariable; else: Divname"></div>
+    <ng-template #Divname></ng-template>
+    </textarea>  
+  </div>
+  <div class="border border-secondary mb-2 p-3 alert">
+    <h4 class="fs-3">ngfor</h4>
+    <textarea class="w-100 mt-2">
+    *ngFor="let product of products; let i=index"
+    *ngFor="let item of [1,3,5]
+    </textarea>  
+  </div>
+  
+
+  <div class="border border-secondary mb-2 p-3 alert">
+    <h4 class="fs-3">@Search    .includes(SearchText)  -----> Returns true flase</h4> 
+    <textarea class="w-100 mt-2">
+      *ngIf="SearchText=='' || product.title.toLowerCase().includes(SearchText) "
+      total->getTotalposts () function-> return this.products.length; 
+    </textarea>
+  </div>
+  
+  </div>
+</div>
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Syntax</h4>
+  <h4 class="fs-4">ngmodel, ngif, ngfor, ngStyle, ngClass, ngSwitch, [innerHTML]="Mydata"</h4>
+</div>
+
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Points to remember</h4>
+  <textarea class="w-100 mt-2" rows="20">
+    Creating a Component
+    *.component.ts
+    *.component.scss
+    *.component.html
+    *.component.spec.ts (unit testing - karma test , ng test)
+    ----------
+    Inside .ts file
+    Import core files, 
+    @component ({ selector, templateUrl, styleUrls})
+    export class ComonentName{}
+    ----------
+    DataBinding
+    String Interpolation doublecurly{ data }, innerText, [disabled]="condition"
+    Property Binding [property]=”data” 
+    Event binding ([event=”expression”])  - click, input, blur, 
+    Two way binding [(ngModel)]=”data”
+    ----------
+    event binding- getting html element value
+    <input type="text" (input)=runMyfunction($event)>
+    runMyfunction{
+      this.inputdata=(<HTMLInputElement>event.target).value;
+    }
+    ----------
+  </textarea>
+</div>
+<div class="bg-white shadow rounded mb-2 p-3 alert">
+  <h4 class="fs-3">Angular Commands</h4>
+  <textarea class="w-100 mt-2" rows="20">
+Install node
+test node version:cmd: node --version ---- node --v
+---------------
+Install NPM
+[sudo] npm install -g npm (g==global)
+npm install --legacy-peer-deps (*If you're getting errors when running, you can often solve them by running )
+=========== 
+npm install -g angular/cli@latest 
+ng --version
+ng new my-app
+ng new my-app --no-strict 
+*(Turns off strict Angular compiler flags strictTemplates, strictInjectionParameters, and strictInputAccessModifiers.)
+(or strict: false in your tsconfig.json --> ng new my-project --strict false)
+cd my-app
+ng serve --open
+
+------
+Run [sudo] npm install -g npm  (sudo  is only required on Mac/ Linux)
+[sudo] npm uninstall -g angular-cli @angular/cli 
+npm cache verify 
+[sudo] npm install -g @angular/cli 
+ng serve --port 
+------------
+npm install --save bootstrap
+add bootstrap css - > root->angular.json
+"./node_modules/bootstrap/dist/css/bootstrap.min.css",
+OR import inside style.scss
+import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+
+npm install @popperjs/core -> no need to min.js
+add bootstrap js - > root->angular.json
+"./node_modules/bootstrap/dist/js/bootstrap.min.js"
+------
+npm i --save bootstrap-icons
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+include angular.json =>"./node_modules/bootstrap-icons/font/bootstrap-icons.css"
+------------
+fix windows permission
+set-ExecutionPolicy RemoteSigned -Scope CurrentUser 
+npx kill-port 4200
+------------
+Adding image relative path : ../, ../../, ../../..
+---------------
+not working installation- 
+npm install @ng-bootstrap/ng-bootstrap
+do it = npm config set legacy-peer-deps true
+------------------
+Json Server
+npm install -g json-server
+json-server --watch db.json
+------------------
+Cache clean: it removes dist/ folder.
+npm cache clean --force
+
+  </textarea>
+</div>
